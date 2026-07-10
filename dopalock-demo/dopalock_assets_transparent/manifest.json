@@ -1,0 +1,1946 @@
+[
+  {
+    "source": "additional",
+    "name": "dopalock_logo_horizontal",
+    "folder": "01_logo_header",
+    "box": [
+      15,
+      105,
+      165,
+      166
+    ],
+    "path": "/mnt/data/dopalock_assets_transparent/01_logo_header/dopalock_logo_horizontal.png"
+  },
+  {
+    "source": "additional",
+    "name": "logo_icon_single",
+    "folder": "01_logo_header",
+    "box": [
+      167,
+      105,
+      260,
+      166
+    ],
+    "path": "/mnt/data/dopalock_assets_transparent/01_logo_header/logo_icon_single.png"
+  },
+  {
+    "source": "additional",
+    "name": "user_profile_chip",
+    "folder": "01_logo_header",
+    "box": [
+      266,
+      105,
+      390,
+      166
+    ],
+    "path": "/mnt/data/dopalock_assets_transparent/01_logo_header/user_profile_chip.png"
+  },
+  {
+    "source": "additional",
+    "name": "streak_chip",
+    "folder": "01_logo_header",
+    "box": [
+      395,
+      105,
+      505,
+      166
+    ],
+    "path": "/mnt/data/dopalock_assets_transparent/01_logo_header/streak_chip.png"
+  },
+  {
+    "source": "additional",
+    "name": "date_range_selector",
+    "folder": "01_logo_header",
+    "box": [
+      15,
+      205,
+      260,
+      262
+    ],
+    "path": "/mnt/data/dopalock_assets_transparent/01_logo_header/date_range_selector.png"
+  },
+  {
+    "source": "additional",
+    "name": "share_result_button",
+    "folder": "01_logo_header",
+    "box": [
+      285,
+      205,
+      430,
+      262
+    ],
+    "path": "/mnt/data/dopalock_assets_transparent/01_logo_header/share_result_button.png"
+  },
+  {
+    "source": "additional",
+    "name": "home_hero_title_block",
+    "folder": "02_home",
+    "box": [
+      480,
+      105,
+      750,
+      250
+    ],
+    "path": "/mnt/data/dopalock_assets_transparent/02_home/home_hero_title_block.png"
+  },
+  {
+    "source": "additional",
+    "name": "home_hero_illustration_badge",
+    "folder": "02_home",
+    "box": [
+      730,
+      95,
+      910,
+      250
+    ],
+    "path": "/mnt/data/dopalock_assets_transparent/02_home/home_hero_illustration_badge.png"
+  },
+  {
+    "source": "additional",
+    "name": "home_main_cta_button",
+    "folder": "02_home",
+    "box": [
+      492,
+      272,
+      675,
+      332
+    ],
+    "path": "/mnt/data/dopalock_assets_transparent/02_home/home_main_cta_button.png"
+  },
+  {
+    "source": "additional",
+    "name": "home_sub_action_buttons",
+    "folder": "02_home",
+    "box": [
+      704,
+      270,
+      922,
+      372
+    ],
+    "path": "/mnt/data/dopalock_assets_transparent/02_home/home_sub_action_buttons.png"
+  },
+  {
+    "source": "additional",
+    "name": "home_recent_history_card",
+    "folder": "02_home",
+    "box": [
+      492,
+      384,
+      750,
+      498
+    ],
+    "path": "/mnt/data/dopalock_assets_transparent/02_home/home_recent_history_card.png"
+  },
+  {
+    "source": "additional",
+    "name": "home_ranking_card",
+    "folder": "02_home",
+    "box": [
+      755,
+      382,
+      920,
+      500
+    ],
+    "path": "/mnt/data/dopalock_assets_transparent/02_home/home_ranking_card.png"
+  },
+  {
+    "source": "additional",
+    "name": "home_screen_section_full",
+    "folder": "02_home",
+    "box": [
+      466,
+      78,
+      925,
+      515
+    ],
+    "path": "/mnt/data/dopalock_assets_transparent/02_home/home_screen_section_full.png"
+  },
+  {
+    "source": "additional",
+    "name": "usage_card_anywhere_selected",
+    "folder": "03_session_create",
+    "box": [
+      18,
+      345,
+      122,
+      435
+    ],
+    "path": "/mnt/data/dopalock_assets_transparent/03_session_create/usage_card_anywhere_selected.png"
+  },
+  {
+    "source": "additional",
+    "name": "usage_card_partner_store",
+    "folder": "03_session_create",
+    "box": [
+      132,
+      345,
+      238,
+      435
+    ],
+    "path": "/mnt/data/dopalock_assets_transparent/03_session_create/usage_card_partner_store.png"
+  },
+  {
+    "source": "additional",
+    "name": "usage_card_direct_store",
+    "folder": "03_session_create",
+    "box": [
+      248,
+      345,
+      355,
+      435
+    ],
+    "path": "/mnt/data/dopalock_assets_transparent/03_session_create/usage_card_direct_store.png"
+  },
+  {
+    "source": "additional",
+    "name": "mode_card_personal",
+    "folder": "03_session_create",
+    "box": [
+      18,
+      432,
+      122,
+      522
+    ],
+    "path": "/mnt/data/dopalock_assets_transparent/03_session_create/mode_card_personal.png"
+  },
+  {
+    "source": "additional",
+    "name": "mode_card_coop_selected",
+    "folder": "03_session_create",
+    "box": [
+      132,
+      432,
+      238,
+      522
+    ],
+    "path": "/mnt/data/dopalock_assets_transparent/03_session_create/mode_card_coop_selected.png"
+  },
+  {
+    "source": "additional",
+    "name": "mode_card_battle",
+    "folder": "03_session_create",
+    "box": [
+      248,
+      432,
+      355,
+      522
+    ],
+    "path": "/mnt/data/dopalock_assets_transparent/03_session_create/mode_card_battle.png"
+  },
+  {
+    "source": "additional",
+    "name": "time_button_30",
+    "folder": "03_session_create",
+    "box": [
+      18,
+      538,
+      75,
+      590
+    ],
+    "path": "/mnt/data/dopalock_assets_transparent/03_session_create/time_button_30.png"
+  },
+  {
+    "source": "additional",
+    "name": "time_button_60_selected",
+    "folder": "03_session_create",
+    "box": [
+      80,
+      538,
+      139,
+      590
+    ],
+    "path": "/mnt/data/dopalock_assets_transparent/03_session_create/time_button_60_selected.png"
+  },
+  {
+    "source": "additional",
+    "name": "time_button_90",
+    "folder": "03_session_create",
+    "box": [
+      145,
+      538,
+      204,
+      590
+    ],
+    "path": "/mnt/data/dopalock_assets_transparent/03_session_create/time_button_90.png"
+  },
+  {
+    "source": "additional",
+    "name": "time_button_120",
+    "folder": "03_session_create",
+    "box": [
+      210,
+      538,
+      270,
+      590
+    ],
+    "path": "/mnt/data/dopalock_assets_transparent/03_session_create/time_button_120.png"
+  },
+  {
+    "source": "additional",
+    "name": "session_summary_card",
+    "folder": "03_session_create",
+    "box": [
+      258,
+      525,
+      430,
+      632
+    ],
+    "path": "/mnt/data/dopalock_assets_transparent/03_session_create/session_summary_card.png"
+  },
+  {
+    "source": "additional",
+    "name": "start_warning_card",
+    "folder": "03_session_create",
+    "box": [
+      18,
+      612,
+      225,
+      681
+    ],
+    "path": "/mnt/data/dopalock_assets_transparent/03_session_create/start_warning_card.png"
+  },
+  {
+    "source": "additional",
+    "name": "cancel_button",
+    "folder": "03_session_create",
+    "box": [
+      18,
+      686,
+      130,
+      735
+    ],
+    "path": "/mnt/data/dopalock_assets_transparent/03_session_create/cancel_button.png"
+  },
+  {
+    "source": "additional",
+    "name": "check_rules_button",
+    "folder": "03_session_create",
+    "box": [
+      138,
+      686,
+      260,
+      735
+    ],
+    "path": "/mnt/data/dopalock_assets_transparent/03_session_create/check_rules_button.png"
+  },
+  {
+    "source": "additional",
+    "name": "session_creation_section_full",
+    "folder": "03_session_create",
+    "box": [
+      8,
+      300,
+      455,
+      735
+    ],
+    "path": "/mnt/data/dopalock_assets_transparent/03_session_create/session_creation_section_full.png"
+  },
+  {
+    "source": "additional",
+    "name": "focus_header_label",
+    "folder": "04_focus",
+    "box": [
+      478,
+      548,
+      640,
+      595
+    ],
+    "path": "/mnt/data/dopalock_assets_transparent/04_focus/focus_header_label.png"
+  },
+  {
+    "source": "additional",
+    "name": "focus_countdown_timer_large",
+    "folder": "04_focus",
+    "box": [
+      622,
+      585,
+      817,
+      675
+    ],
+    "path": "/mnt/data/dopalock_assets_transparent/04_focus/focus_countdown_timer_large.png"
+  },
+  {
+    "source": "additional",
+    "name": "focus_circular_progress_lock",
+    "folder": "04_focus",
+    "box": [
+      500,
+      585,
+      610,
+      700
+    ],
+    "path": "/mnt/data/dopalock_assets_transparent/04_focus/focus_circular_progress_lock.png"
+  },
+  {
+    "source": "additional",
+    "name": "focus_right_status_list",
+    "folder": "04_focus",
+    "box": [
+      795,
+      560,
+      913,
+      706
+    ],
+    "path": "/mnt/data/dopalock_assets_transparent/04_focus/focus_right_status_list.png"
+  },
+  {
+    "source": "additional",
+    "name": "focus_status_card_green",
+    "folder": "04_focus",
+    "box": [
+      485,
+      735,
+      628,
+      807
+    ],
+    "path": "/mnt/data/dopalock_assets_transparent/04_focus/focus_status_card_green.png"
+  },
+  {
+    "source": "additional",
+    "name": "focus_action_break_ticket",
+    "folder": "04_focus",
+    "box": [
+      640,
+      735,
+      764,
+      807
+    ],
+    "path": "/mnt/data/dopalock_assets_transparent/04_focus/focus_action_break_ticket.png"
+  },
+  {
+    "source": "additional",
+    "name": "focus_action_jailbreak",
+    "folder": "04_focus",
+    "box": [
+      772,
+      735,
+      895,
+      807
+    ],
+    "path": "/mnt/data/dopalock_assets_transparent/04_focus/focus_action_jailbreak.png"
+  },
+  {
+    "source": "additional",
+    "name": "focus_action_complete",
+    "folder": "04_focus",
+    "box": [
+      775,
+      800,
+      920,
+      868
+    ],
+    "path": "/mnt/data/dopalock_assets_transparent/04_focus/focus_action_complete.png"
+  },
+  {
+    "source": "additional",
+    "name": "focus_jailbreak_warning_text",
+    "folder": "04_focus",
+    "box": [
+      480,
+      850,
+      920,
+      895
+    ],
+    "path": "/mnt/data/dopalock_assets_transparent/04_focus/focus_jailbreak_warning_text.png"
+  },
+  {
+    "source": "additional",
+    "name": "focus_section_full",
+    "folder": "04_focus",
+    "box": [
+      465,
+      520,
+      925,
+      895
+    ],
+    "path": "/mnt/data/dopalock_assets_transparent/04_focus/focus_section_full.png"
+  },
+  {
+    "source": "additional",
+    "name": "break_ticket_label",
+    "folder": "05_break",
+    "box": [
+      20,
+      728,
+      175,
+      765
+    ],
+    "path": "/mnt/data/dopalock_assets_transparent/05_break/break_ticket_label.png"
+  },
+  {
+    "source": "additional",
+    "name": "break_title_resting",
+    "folder": "05_break",
+    "box": [
+      30,
+      770,
+      140,
+      820
+    ],
+    "path": "/mnt/data/dopalock_assets_transparent/05_break/break_title_resting.png"
+  },
+  {
+    "source": "additional",
+    "name": "break_timer_circular",
+    "folder": "05_break",
+    "box": [
+      25,
+      818,
+      155,
+      972
+    ],
+    "path": "/mnt/data/dopalock_assets_transparent/05_break/break_timer_circular.png"
+  },
+  {
+    "source": "additional",
+    "name": "break_return_notice_bar",
+    "folder": "05_break",
+    "box": [
+      145,
+      820,
+      375,
+      865
+    ],
+    "path": "/mnt/data/dopalock_assets_transparent/05_break/break_return_notice_bar.png"
+  },
+  {
+    "source": "additional",
+    "name": "break_action_add_ticket",
+    "folder": "05_break",
+    "box": [
+      166,
+      880,
+      250,
+      970
+    ],
+    "path": "/mnt/data/dopalock_assets_transparent/05_break/break_action_add_ticket.png"
+  },
+  {
+    "source": "additional",
+    "name": "break_action_return_focus",
+    "folder": "05_break",
+    "box": [
+      260,
+      880,
+      345,
+      970
+    ],
+    "path": "/mnt/data/dopalock_assets_transparent/05_break/break_action_return_focus.png"
+  },
+  {
+    "source": "additional",
+    "name": "break_action_jailbreak_small",
+    "folder": "05_break",
+    "box": [
+      355,
+      880,
+      445,
+      970
+    ],
+    "path": "/mnt/data/dopalock_assets_transparent/05_break/break_action_jailbreak_small.png"
+  },
+  {
+    "source": "additional",
+    "name": "break_locker_illustration",
+    "folder": "05_break",
+    "box": [
+      330,
+      720,
+      445,
+      870
+    ],
+    "path": "/mnt/data/dopalock_assets_transparent/05_break/break_locker_illustration.png"
+  },
+  {
+    "source": "additional",
+    "name": "break_section_full",
+    "folder": "05_break",
+    "box": [
+      8,
+      700,
+      455,
+      980
+    ],
+    "path": "/mnt/data/dopalock_assets_transparent/05_break/break_section_full.png"
+  },
+  {
+    "source": "additional",
+    "name": "success_badge_confetti",
+    "folder": "06_success_result",
+    "box": [
+      535,
+      930,
+      870,
+      1020
+    ],
+    "path": "/mnt/data/dopalock_assets_transparent/06_success_result/success_badge_confetti.png"
+  },
+  {
+    "source": "additional",
+    "name": "success_title_ribbon",
+    "folder": "06_success_result",
+    "box": [
+      570,
+      960,
+      835,
+      1045
+    ],
+    "path": "/mnt/data/dopalock_assets_transparent/06_success_result/success_title_ribbon.png"
+  },
+  {
+    "source": "additional",
+    "name": "success_result_summary_4items",
+    "folder": "06_success_result",
+    "box": [
+      500,
+      1040,
+      903,
+      1115
+    ],
+    "path": "/mnt/data/dopalock_assets_transparent/06_success_result/success_result_summary_4items.png"
+  },
+  {
+    "source": "additional",
+    "name": "success_section_full",
+    "folder": "06_success_result",
+    "box": [
+      466,
+      880,
+      925,
+      1120
+    ],
+    "path": "/mnt/data/dopalock_assets_transparent/06_success_result/success_section_full.png"
+  },
+  {
+    "source": "additional",
+    "name": "jailbreak_decoration_header",
+    "folder": "07_jailbreak_result",
+    "box": [
+      30,
+      1045,
+      270,
+      1130
+    ],
+    "path": "/mnt/data/dopalock_assets_transparent/07_jailbreak_result/jailbreak_decoration_header.png"
+  },
+  {
+    "source": "additional",
+    "name": "jailbreak_title_and_message",
+    "folder": "07_jailbreak_result",
+    "box": [
+      122,
+      1095,
+      335,
+      1160
+    ],
+    "path": "/mnt/data/dopalock_assets_transparent/07_jailbreak_result/jailbreak_title_and_message.png"
+  },
+  {
+    "source": "additional",
+    "name": "jailbreak_penalty_card_80percent",
+    "folder": "07_jailbreak_result",
+    "box": [
+      325,
+      1045,
+      445,
+      1160
+    ],
+    "path": "/mnt/data/dopalock_assets_transparent/07_jailbreak_result/jailbreak_penalty_card_80percent.png"
+  },
+  {
+    "source": "additional",
+    "name": "jailbreak_result_summary_4items",
+    "folder": "07_jailbreak_result",
+    "box": [
+      25,
+      1160,
+      430,
+      1260
+    ],
+    "path": "/mnt/data/dopalock_assets_transparent/07_jailbreak_result/jailbreak_result_summary_4items.png"
+  },
+  {
+    "source": "additional",
+    "name": "jailbreak_section_full",
+    "folder": "07_jailbreak_result",
+    "box": [
+      8,
+      1000,
+      455,
+      1270
+    ],
+    "path": "/mnt/data/dopalock_assets_transparent/07_jailbreak_result/jailbreak_section_full.png"
+  },
+  {
+    "source": "additional",
+    "name": "dashboard_top_stat_cards",
+    "folder": "08_dashboard",
+    "box": [
+      475,
+      1172,
+      925,
+      1253
+    ],
+    "path": "/mnt/data/dopalock_assets_transparent/08_dashboard/dashboard_top_stat_cards.png"
+  },
+  {
+    "source": "additional",
+    "name": "dashboard_bar_chart_card",
+    "folder": "08_dashboard",
+    "box": [
+      475,
+      1265,
+      665,
+      1390
+    ],
+    "path": "/mnt/data/dopalock_assets_transparent/08_dashboard/dashboard_bar_chart_card.png"
+  },
+  {
+    "source": "additional",
+    "name": "dashboard_success_rate_card",
+    "folder": "08_dashboard",
+    "box": [
+      670,
+      1265,
+      768,
+      1390
+    ],
+    "path": "/mnt/data/dopalock_assets_transparent/08_dashboard/dashboard_success_rate_card.png"
+  },
+  {
+    "source": "additional",
+    "name": "dashboard_ranking_card",
+    "folder": "08_dashboard",
+    "box": [
+      772,
+      1265,
+      925,
+      1390
+    ],
+    "path": "/mnt/data/dopalock_assets_transparent/08_dashboard/dashboard_ranking_card.png"
+  },
+  {
+    "source": "additional",
+    "name": "dashboard_achievement_cards",
+    "folder": "08_dashboard",
+    "box": [
+      475,
+      1400,
+      640,
+      1485
+    ],
+    "path": "/mnt/data/dopalock_assets_transparent/08_dashboard/dashboard_achievement_cards.png"
+  },
+  {
+    "source": "additional",
+    "name": "dashboard_mini_table_status",
+    "folder": "08_dashboard",
+    "box": [
+      650,
+      1400,
+      915,
+      1485
+    ],
+    "path": "/mnt/data/dopalock_assets_transparent/08_dashboard/dashboard_mini_table_status.png"
+  },
+  {
+    "source": "additional",
+    "name": "dashboard_section_full",
+    "folder": "08_dashboard",
+    "box": [
+      466,
+      1135,
+      925,
+      1488
+    ],
+    "path": "/mnt/data/dopalock_assets_transparent/08_dashboard/dashboard_section_full.png"
+  },
+  {
+    "source": "additional",
+    "name": "rule_basic_cards_rate_dp_ticket",
+    "folder": "09_rules",
+    "box": [
+      18,
+      1328,
+      295,
+      1410
+    ],
+    "path": "/mnt/data/dopalock_assets_transparent/09_rules/rule_basic_cards_rate_dp_ticket.png"
+  },
+  {
+    "source": "additional",
+    "name": "rule_usage_cards_3types",
+    "folder": "09_rules",
+    "box": [
+      18,
+      1432,
+      295,
+      1515
+    ],
+    "path": "/mnt/data/dopalock_assets_transparent/09_rules/rule_usage_cards_3types.png"
+  },
+  {
+    "source": "additional",
+    "name": "rule_mode_cards_3types",
+    "folder": "09_rules",
+    "box": [
+      18,
+      1532,
+      295,
+      1608
+    ],
+    "path": "/mnt/data/dopalock_assets_transparent/09_rules/rule_mode_cards_3types.png"
+  },
+  {
+    "source": "additional",
+    "name": "rule_jailbreak_penalty_card",
+    "folder": "09_rules",
+    "box": [
+      310,
+      1322,
+      445,
+      1435
+    ],
+    "path": "/mnt/data/dopalock_assets_transparent/09_rules/rule_jailbreak_penalty_card.png"
+  },
+  {
+    "source": "additional",
+    "name": "rule_pilot_card",
+    "folder": "09_rules",
+    "box": [
+      310,
+      1442,
+      445,
+      1558
+    ],
+    "path": "/mnt/data/dopalock_assets_transparent/09_rules/rule_pilot_card.png"
+  },
+  {
+    "source": "additional",
+    "name": "rule_summary_card",
+    "folder": "09_rules",
+    "box": [
+      310,
+      1560,
+      445,
+      1650
+    ],
+    "path": "/mnt/data/dopalock_assets_transparent/09_rules/rule_summary_card.png"
+  },
+  {
+    "source": "additional",
+    "name": "rules_bottom_buttons",
+    "folder": "09_rules",
+    "box": [
+      20,
+      1615,
+      300,
+      1678
+    ],
+    "path": "/mnt/data/dopalock_assets_transparent/09_rules/rules_bottom_buttons.png"
+  },
+  {
+    "source": "additional",
+    "name": "rules_section_full",
+    "folder": "09_rules",
+    "box": [
+      8,
+      1275,
+      455,
+      1680
+    ],
+    "path": "/mnt/data/dopalock_assets_transparent/09_rules/rules_section_full.png"
+  },
+  {
+    "source": "additional",
+    "name": "toast_success",
+    "folder": "10_common_messages",
+    "box": [
+      475,
+      1505,
+      700,
+      1548
+    ],
+    "path": "/mnt/data/dopalock_assets_transparent/10_common_messages/toast_success.png"
+  },
+  {
+    "source": "additional",
+    "name": "toast_warning",
+    "folder": "10_common_messages",
+    "box": [
+      475,
+      1552,
+      700,
+      1595
+    ],
+    "path": "/mnt/data/dopalock_assets_transparent/10_common_messages/toast_warning.png"
+  },
+  {
+    "source": "additional",
+    "name": "toast_error",
+    "folder": "10_common_messages",
+    "box": [
+      475,
+      1600,
+      700,
+      1642
+    ],
+    "path": "/mnt/data/dopalock_assets_transparent/10_common_messages/toast_error.png"
+  },
+  {
+    "source": "additional",
+    "name": "toast_tip",
+    "folder": "10_common_messages",
+    "box": [
+      475,
+      1645,
+      700,
+      1682
+    ],
+    "path": "/mnt/data/dopalock_assets_transparent/10_common_messages/toast_tip.png"
+  },
+  {
+    "source": "additional",
+    "name": "status_tags_set",
+    "folder": "10_common_messages",
+    "box": [
+      715,
+      1505,
+      920,
+      1610
+    ],
+    "path": "/mnt/data/dopalock_assets_transparent/10_common_messages/status_tags_set.png"
+  },
+  {
+    "source": "additional",
+    "name": "background_decorations_strip",
+    "folder": "10_common_messages",
+    "box": [
+      715,
+      1615,
+      920,
+      1682
+    ],
+    "path": "/mnt/data/dopalock_assets_transparent/10_common_messages/background_decorations_strip.png"
+  },
+  {
+    "source": "additional",
+    "name": "common_section_full",
+    "folder": "10_common_messages",
+    "box": [
+      466,
+      1490,
+      925,
+      1683
+    ],
+    "path": "/mnt/data/dopalock_assets_transparent/10_common_messages/common_section_full.png"
+  },
+  {
+    "source": "base",
+    "name": "color_swatch_navy",
+    "folder": "00_colors",
+    "box": [
+      20,
+      107,
+      90,
+      200
+    ],
+    "path": "/mnt/data/dopalock_assets_transparent/00_colors/color_swatch_navy.png"
+  },
+  {
+    "source": "base",
+    "name": "color_swatch_primary_blue",
+    "folder": "00_colors",
+    "box": [
+      110,
+      107,
+      180,
+      200
+    ],
+    "path": "/mnt/data/dopalock_assets_transparent/00_colors/color_swatch_primary_blue.png"
+  },
+  {
+    "source": "base",
+    "name": "color_swatch_light_blue",
+    "folder": "00_colors",
+    "box": [
+      200,
+      107,
+      270,
+      200
+    ],
+    "path": "/mnt/data/dopalock_assets_transparent/00_colors/color_swatch_light_blue.png"
+  },
+  {
+    "source": "base",
+    "name": "color_swatch_accent_green",
+    "folder": "00_colors",
+    "box": [
+      310,
+      107,
+      380,
+      200
+    ],
+    "path": "/mnt/data/dopalock_assets_transparent/00_colors/color_swatch_accent_green.png"
+  },
+  {
+    "source": "base",
+    "name": "color_swatch_error_red",
+    "folder": "00_colors",
+    "box": [
+      20,
+      210,
+      90,
+      303
+    ],
+    "path": "/mnt/data/dopalock_assets_transparent/00_colors/color_swatch_error_red.png"
+  },
+  {
+    "source": "base",
+    "name": "color_swatch_warning_yellow",
+    "folder": "00_colors",
+    "box": [
+      110,
+      210,
+      180,
+      303
+    ],
+    "path": "/mnt/data/dopalock_assets_transparent/00_colors/color_swatch_warning_yellow.png"
+  },
+  {
+    "source": "base",
+    "name": "color_swatch_gray",
+    "folder": "00_colors",
+    "box": [
+      200,
+      210,
+      270,
+      303
+    ],
+    "path": "/mnt/data/dopalock_assets_transparent/00_colors/color_swatch_gray.png"
+  },
+  {
+    "source": "base",
+    "name": "color_swatch_light_gray",
+    "folder": "00_colors",
+    "box": [
+      290,
+      210,
+      360,
+      303
+    ],
+    "path": "/mnt/data/dopalock_assets_transparent/00_colors/color_swatch_light_gray.png"
+  },
+  {
+    "source": "base",
+    "name": "color_swatch_white",
+    "folder": "00_colors",
+    "box": [
+      380,
+      210,
+      450,
+      303
+    ],
+    "path": "/mnt/data/dopalock_assets_transparent/00_colors/color_swatch_white.png"
+  },
+  {
+    "source": "base",
+    "name": "typography_title_l1",
+    "folder": "01_typography",
+    "box": [
+      20,
+      342,
+      280,
+      380
+    ],
+    "path": "/mnt/data/dopalock_assets_transparent/01_typography/typography_title_l1.png"
+  },
+  {
+    "source": "base",
+    "name": "typography_title_l2",
+    "folder": "01_typography",
+    "box": [
+      20,
+      390,
+      280,
+      420
+    ],
+    "path": "/mnt/data/dopalock_assets_transparent/01_typography/typography_title_l2.png"
+  },
+  {
+    "source": "base",
+    "name": "typography_title_l3",
+    "folder": "01_typography",
+    "box": [
+      20,
+      430,
+      280,
+      458
+    ],
+    "path": "/mnt/data/dopalock_assets_transparent/01_typography/typography_title_l3.png"
+  },
+  {
+    "source": "base",
+    "name": "typography_body_text",
+    "folder": "01_typography",
+    "box": [
+      20,
+      464,
+      330,
+      492
+    ],
+    "path": "/mnt/data/dopalock_assets_transparent/01_typography/typography_body_text.png"
+  },
+  {
+    "source": "base",
+    "name": "typography_helper_text",
+    "folder": "01_typography",
+    "box": [
+      20,
+      492,
+      330,
+      520
+    ],
+    "path": "/mnt/data/dopalock_assets_transparent/01_typography/typography_helper_text.png"
+  },
+  {
+    "source": "base",
+    "name": "button_primary_session_start",
+    "folder": "02_buttons",
+    "box": [
+      20,
+      560,
+      155,
+      607
+    ],
+    "path": "/mnt/data/dopalock_assets_transparent/02_buttons/button_primary_session_start.png"
+  },
+  {
+    "source": "base",
+    "name": "button_secondary_dashboard",
+    "folder": "02_buttons",
+    "box": [
+      170,
+      560,
+      305,
+      607
+    ],
+    "path": "/mnt/data/dopalock_assets_transparent/02_buttons/button_secondary_dashboard.png"
+  },
+  {
+    "source": "base",
+    "name": "button_text_rules",
+    "folder": "02_buttons",
+    "box": [
+      315,
+      560,
+      420,
+      607
+    ],
+    "path": "/mnt/data/dopalock_assets_transparent/02_buttons/button_text_rules.png"
+  },
+  {
+    "source": "base",
+    "name": "button_success_complete",
+    "folder": "02_buttons",
+    "box": [
+      20,
+      635,
+      145,
+      682
+    ],
+    "path": "/mnt/data/dopalock_assets_transparent/02_buttons/button_success_complete.png"
+  },
+  {
+    "source": "base",
+    "name": "button_danger_jailbreak",
+    "folder": "02_buttons",
+    "box": [
+      157,
+      635,
+      270,
+      682
+    ],
+    "path": "/mnt/data/dopalock_assets_transparent/02_buttons/button_danger_jailbreak.png"
+  },
+  {
+    "source": "base",
+    "name": "button_aux_ticket",
+    "folder": "02_buttons",
+    "box": [
+      285,
+      635,
+      420,
+      682
+    ],
+    "path": "/mnt/data/dopalock_assets_transparent/02_buttons/button_aux_ticket.png"
+  },
+  {
+    "source": "base",
+    "name": "badge_success",
+    "folder": "03_badges_tags",
+    "box": [
+      20,
+      720,
+      85,
+      750
+    ],
+    "path": "/mnt/data/dopalock_assets_transparent/03_badges_tags/badge_success.png"
+  },
+  {
+    "source": "base",
+    "name": "badge_jailbreak",
+    "folder": "03_badges_tags",
+    "box": [
+      95,
+      720,
+      165,
+      750
+    ],
+    "path": "/mnt/data/dopalock_assets_transparent/03_badges_tags/badge_jailbreak.png"
+  },
+  {
+    "source": "base",
+    "name": "badge_ticket_active",
+    "folder": "03_badges_tags",
+    "box": [
+      180,
+      720,
+      310,
+      750
+    ],
+    "path": "/mnt/data/dopalock_assets_transparent/03_badges_tags/badge_ticket_active.png"
+  },
+  {
+    "source": "base",
+    "name": "badge_personal_mode",
+    "folder": "03_badges_tags",
+    "box": [
+      320,
+      720,
+      420,
+      750
+    ],
+    "path": "/mnt/data/dopalock_assets_transparent/03_badges_tags/badge_personal_mode.png"
+  },
+  {
+    "source": "base",
+    "name": "badge_coop_mode",
+    "folder": "03_badges_tags",
+    "box": [
+      20,
+      765,
+      105,
+      795
+    ],
+    "path": "/mnt/data/dopalock_assets_transparent/03_badges_tags/badge_coop_mode.png"
+  },
+  {
+    "source": "base",
+    "name": "badge_battle_mode",
+    "folder": "03_badges_tags",
+    "box": [
+      118,
+      765,
+      205,
+      795
+    ],
+    "path": "/mnt/data/dopalock_assets_transparent/03_badges_tags/badge_battle_mode.png"
+  },
+  {
+    "source": "base",
+    "name": "badge_anywhere",
+    "folder": "03_badges_tags",
+    "box": [
+      20,
+      810,
+      110,
+      840
+    ],
+    "path": "/mnt/data/dopalock_assets_transparent/03_badges_tags/badge_anywhere.png"
+  },
+  {
+    "source": "base",
+    "name": "badge_partner_store",
+    "folder": "03_badges_tags",
+    "box": [
+      125,
+      810,
+      225,
+      840
+    ],
+    "path": "/mnt/data/dopalock_assets_transparent/03_badges_tags/badge_partner_store.png"
+  },
+  {
+    "source": "base",
+    "name": "badge_direct_store",
+    "folder": "03_badges_tags",
+    "box": [
+      240,
+      810,
+      340,
+      840
+    ],
+    "path": "/mnt/data/dopalock_assets_transparent/03_badges_tags/badge_direct_store.png"
+  },
+  {
+    "source": "base",
+    "name": "input_number_field",
+    "folder": "04_inputs_navigation",
+    "box": [
+      20,
+      875,
+      190,
+      924
+    ],
+    "path": "/mnt/data/dopalock_assets_transparent/04_inputs_navigation/input_number_field.png"
+  },
+  {
+    "source": "base",
+    "name": "dropdown_select",
+    "folder": "04_inputs_navigation",
+    "box": [
+      210,
+      875,
+      405,
+      924
+    ],
+    "path": "/mnt/data/dopalock_assets_transparent/04_inputs_navigation/dropdown_select.png"
+  },
+  {
+    "source": "base",
+    "name": "sidebar_navigation_bar",
+    "folder": "04_inputs_navigation",
+    "box": [
+      20,
+      950,
+      405,
+      1018
+    ],
+    "path": "/mnt/data/dopalock_assets_transparent/04_inputs_navigation/sidebar_navigation_bar.png"
+  },
+  {
+    "source": "base",
+    "name": "icon_home",
+    "folder": "05_icons",
+    "box": [
+      429,
+      44,
+      489,
+      112
+    ],
+    "path": "/mnt/data/dopalock_assets_transparent/05_icons/icon_home.png"
+  },
+  {
+    "source": "base",
+    "name": "icon_session_create",
+    "folder": "05_icons",
+    "box": [
+      499,
+      44,
+      559,
+      112
+    ],
+    "path": "/mnt/data/dopalock_assets_transparent/05_icons/icon_session_create.png"
+  },
+  {
+    "source": "base",
+    "name": "icon_dashboard",
+    "folder": "05_icons",
+    "box": [
+      569,
+      44,
+      629,
+      112
+    ],
+    "path": "/mnt/data/dopalock_assets_transparent/05_icons/icon_dashboard.png"
+  },
+  {
+    "source": "base",
+    "name": "icon_history",
+    "folder": "05_icons",
+    "box": [
+      639,
+      44,
+      699,
+      112
+    ],
+    "path": "/mnt/data/dopalock_assets_transparent/05_icons/icon_history.png"
+  },
+  {
+    "source": "base",
+    "name": "icon_ranking",
+    "folder": "05_icons",
+    "box": [
+      709,
+      44,
+      769,
+      112
+    ],
+    "path": "/mnt/data/dopalock_assets_transparent/05_icons/icon_ranking.png"
+  },
+  {
+    "source": "base",
+    "name": "icon_ticket",
+    "folder": "05_icons",
+    "box": [
+      779,
+      44,
+      839,
+      112
+    ],
+    "path": "/mnt/data/dopalock_assets_transparent/05_icons/icon_ticket.png"
+  },
+  {
+    "source": "base",
+    "name": "icon_settings",
+    "folder": "05_icons",
+    "box": [
+      849,
+      44,
+      909,
+      112
+    ],
+    "path": "/mnt/data/dopalock_assets_transparent/05_icons/icon_settings.png"
+  },
+  {
+    "source": "base",
+    "name": "icon_lock",
+    "folder": "05_icons",
+    "box": [
+      429,
+      122,
+      489,
+      190
+    ],
+    "path": "/mnt/data/dopalock_assets_transparent/05_icons/icon_lock.png"
+  },
+  {
+    "source": "base",
+    "name": "icon_unlock",
+    "folder": "05_icons",
+    "box": [
+      499,
+      122,
+      559,
+      190
+    ],
+    "path": "/mnt/data/dopalock_assets_transparent/05_icons/icon_unlock.png"
+  },
+  {
+    "source": "base",
+    "name": "icon_timer",
+    "folder": "05_icons",
+    "box": [
+      569,
+      122,
+      629,
+      190
+    ],
+    "path": "/mnt/data/dopalock_assets_transparent/05_icons/icon_timer.png"
+  },
+  {
+    "source": "base",
+    "name": "icon_graph_up",
+    "folder": "05_icons",
+    "box": [
+      639,
+      122,
+      699,
+      190
+    ],
+    "path": "/mnt/data/dopalock_assets_transparent/05_icons/icon_graph_up.png"
+  },
+  {
+    "source": "base",
+    "name": "icon_dp",
+    "folder": "05_icons",
+    "box": [
+      709,
+      122,
+      769,
+      190
+    ],
+    "path": "/mnt/data/dopalock_assets_transparent/05_icons/icon_dp.png"
+  },
+  {
+    "source": "base",
+    "name": "icon_ticket_alt",
+    "folder": "05_icons",
+    "box": [
+      779,
+      122,
+      839,
+      190
+    ],
+    "path": "/mnt/data/dopalock_assets_transparent/05_icons/icon_ticket_alt.png"
+  },
+  {
+    "source": "base",
+    "name": "icon_user",
+    "folder": "05_icons",
+    "box": [
+      849,
+      122,
+      909,
+      190
+    ],
+    "path": "/mnt/data/dopalock_assets_transparent/05_icons/icon_user.png"
+  },
+  {
+    "source": "base",
+    "name": "icon_success",
+    "folder": "05_icons",
+    "box": [
+      429,
+      202,
+      489,
+      270
+    ],
+    "path": "/mnt/data/dopalock_assets_transparent/05_icons/icon_success.png"
+  },
+  {
+    "source": "base",
+    "name": "icon_jailbreak_x",
+    "folder": "05_icons",
+    "box": [
+      499,
+      202,
+      559,
+      270
+    ],
+    "path": "/mnt/data/dopalock_assets_transparent/05_icons/icon_jailbreak_x.png"
+  },
+  {
+    "source": "base",
+    "name": "icon_warning",
+    "folder": "05_icons",
+    "box": [
+      569,
+      202,
+      629,
+      270
+    ],
+    "path": "/mnt/data/dopalock_assets_transparent/05_icons/icon_warning.png"
+  },
+  {
+    "source": "base",
+    "name": "icon_info",
+    "folder": "05_icons",
+    "box": [
+      639,
+      202,
+      699,
+      270
+    ],
+    "path": "/mnt/data/dopalock_assets_transparent/05_icons/icon_info.png"
+  },
+  {
+    "source": "base",
+    "name": "icon_calendar",
+    "folder": "05_icons",
+    "box": [
+      709,
+      202,
+      769,
+      270
+    ],
+    "path": "/mnt/data/dopalock_assets_transparent/05_icons/icon_calendar.png"
+  },
+  {
+    "source": "base",
+    "name": "icon_pin",
+    "folder": "05_icons",
+    "box": [
+      779,
+      202,
+      839,
+      270
+    ],
+    "path": "/mnt/data/dopalock_assets_transparent/05_icons/icon_pin.png"
+  },
+  {
+    "source": "base",
+    "name": "icon_store",
+    "folder": "05_icons",
+    "box": [
+      849,
+      202,
+      909,
+      270
+    ],
+    "path": "/mnt/data/dopalock_assets_transparent/05_icons/icon_store.png"
+  },
+  {
+    "source": "base",
+    "name": "icon_personal",
+    "folder": "05_icons",
+    "box": [
+      429,
+      282,
+      489,
+      350
+    ],
+    "path": "/mnt/data/dopalock_assets_transparent/05_icons/icon_personal.png"
+  },
+  {
+    "source": "base",
+    "name": "icon_coop",
+    "folder": "05_icons",
+    "box": [
+      499,
+      282,
+      559,
+      350
+    ],
+    "path": "/mnt/data/dopalock_assets_transparent/05_icons/icon_coop.png"
+  },
+  {
+    "source": "base",
+    "name": "icon_battle",
+    "folder": "05_icons",
+    "box": [
+      569,
+      282,
+      629,
+      350
+    ],
+    "path": "/mnt/data/dopalock_assets_transparent/05_icons/icon_battle.png"
+  },
+  {
+    "source": "base",
+    "name": "icon_reset",
+    "folder": "05_icons",
+    "box": [
+      639,
+      282,
+      699,
+      350
+    ],
+    "path": "/mnt/data/dopalock_assets_transparent/05_icons/icon_reset.png"
+  },
+  {
+    "source": "base",
+    "name": "icon_share",
+    "folder": "05_icons",
+    "box": [
+      709,
+      282,
+      769,
+      350
+    ],
+    "path": "/mnt/data/dopalock_assets_transparent/05_icons/icon_share.png"
+  },
+  {
+    "source": "base",
+    "name": "icon_close",
+    "folder": "05_icons",
+    "box": [
+      779,
+      282,
+      839,
+      350
+    ],
+    "path": "/mnt/data/dopalock_assets_transparent/05_icons/icon_close.png"
+  },
+  {
+    "source": "base",
+    "name": "icon_arrow",
+    "folder": "05_icons",
+    "box": [
+      849,
+      282,
+      909,
+      350
+    ],
+    "path": "/mnt/data/dopalock_assets_transparent/05_icons/icon_arrow.png"
+  },
+  {
+    "source": "base",
+    "name": "illustration_smartphone_locker",
+    "folder": "06_illustrations",
+    "box": [
+      430,
+      405,
+      535,
+      545
+    ],
+    "path": "/mnt/data/dopalock_assets_transparent/06_illustrations/illustration_smartphone_locker.png"
+  },
+  {
+    "source": "base",
+    "name": "illustration_focus_timer",
+    "folder": "06_illustrations",
+    "box": [
+      545,
+      405,
+      650,
+      545
+    ],
+    "path": "/mnt/data/dopalock_assets_transparent/06_illustrations/illustration_focus_timer.png"
+  },
+  {
+    "source": "base",
+    "name": "illustration_success_confetti",
+    "folder": "06_illustrations",
+    "box": [
+      657,
+      405,
+      735,
+      545
+    ],
+    "path": "/mnt/data/dopalock_assets_transparent/06_illustrations/illustration_success_confetti.png"
+  },
+  {
+    "source": "base",
+    "name": "illustration_students_group",
+    "folder": "06_illustrations",
+    "box": [
+      735,
+      390,
+      885,
+      545
+    ],
+    "path": "/mnt/data/dopalock_assets_transparent/06_illustrations/illustration_students_group.png"
+  },
+  {
+    "source": "base",
+    "name": "stat_card_current_rate",
+    "folder": "07_info_status_cards",
+    "box": [
+      430,
+      595,
+      555,
+      690
+    ],
+    "path": "/mnt/data/dopalock_assets_transparent/07_info_status_cards/stat_card_current_rate.png"
+  },
+  {
+    "source": "base",
+    "name": "stat_card_current_dp",
+    "folder": "07_info_status_cards",
+    "box": [
+      565,
+      595,
+      690,
+      690
+    ],
+    "path": "/mnt/data/dopalock_assets_transparent/07_info_status_cards/stat_card_current_dp.png"
+  },
+  {
+    "source": "base",
+    "name": "stat_card_ticket_remaining",
+    "folder": "07_info_status_cards",
+    "box": [
+      700,
+      595,
+      815,
+      690
+    ],
+    "path": "/mnt/data/dopalock_assets_transparent/07_info_status_cards/stat_card_ticket_remaining.png"
+  },
+  {
+    "source": "base",
+    "name": "stat_card_total_focus",
+    "folder": "07_info_status_cards",
+    "box": [
+      430,
+      705,
+      555,
+      800
+    ],
+    "path": "/mnt/data/dopalock_assets_transparent/07_info_status_cards/stat_card_total_focus.png"
+  },
+  {
+    "source": "base",
+    "name": "stat_card_success_count",
+    "folder": "07_info_status_cards",
+    "box": [
+      565,
+      705,
+      690,
+      800
+    ],
+    "path": "/mnt/data/dopalock_assets_transparent/07_info_status_cards/stat_card_success_count.png"
+  },
+  {
+    "source": "base",
+    "name": "stat_card_jailbreak_count",
+    "folder": "07_info_status_cards",
+    "box": [
+      700,
+      705,
+      815,
+      800
+    ],
+    "path": "/mnt/data/dopalock_assets_transparent/07_info_status_cards/stat_card_jailbreak_count.png"
+  },
+  {
+    "source": "base",
+    "name": "progress_ring_success_rate",
+    "folder": "08_progress_indicators",
+    "box": [
+      430,
+      810,
+      565,
+      990
+    ],
+    "path": "/mnt/data/dopalock_assets_transparent/08_progress_indicators/progress_ring_success_rate.png"
+  },
+  {
+    "source": "base",
+    "name": "step_indicator_session_flow",
+    "folder": "08_progress_indicators",
+    "box": [
+      575,
+      835,
+      805,
+      900
+    ],
+    "path": "/mnt/data/dopalock_assets_transparent/08_progress_indicators/step_indicator_session_flow.png"
+  },
+  {
+    "source": "base",
+    "name": "rank_badges_bronze_silver_gold_platinum_diamond",
+    "folder": "08_progress_indicators",
+    "box": [
+      550,
+      910,
+      820,
+      1005
+    ],
+    "path": "/mnt/data/dopalock_assets_transparent/08_progress_indicators/rank_badges_bronze_silver_gold_platinum_diamond.png"
+  },
+  {
+    "source": "base",
+    "name": "chart_bar_focus_time",
+    "folder": "09_charts_tables_alerts",
+    "box": [
+      860,
+      60,
+      1085,
+      225
+    ],
+    "path": "/mnt/data/dopalock_assets_transparent/09_charts_tables_alerts/chart_bar_focus_time.png"
+  },
+  {
+    "source": "base",
+    "name": "chart_line_rate",
+    "folder": "09_charts_tables_alerts",
+    "box": [
+      1090,
+      60,
+      1310,
+      225
+    ],
+    "path": "/mnt/data/dopalock_assets_transparent/09_charts_tables_alerts/chart_line_rate.png"
+  },
+  {
+    "source": "base",
+    "name": "chart_donut_success_rate",
+    "folder": "09_charts_tables_alerts",
+    "box": [
+      1320,
+      60,
+      1515,
+      225
+    ],
+    "path": "/mnt/data/dopalock_assets_transparent/09_charts_tables_alerts/chart_donut_success_rate.png"
+  },
+  {
+    "source": "base",
+    "name": "session_history_table",
+    "folder": "09_charts_tables_alerts",
+    "box": [
+      855,
+      270,
+      1515,
+      515
+    ],
+    "path": "/mnt/data/dopalock_assets_transparent/09_charts_tables_alerts/session_history_table.png"
+  },
+  {
+    "source": "base",
+    "name": "ranking_card_top3",
+    "folder": "09_charts_tables_alerts",
+    "box": [
+      855,
+      555,
+      1170,
+      735
+    ],
+    "path": "/mnt/data/dopalock_assets_transparent/09_charts_tables_alerts/ranking_card_top3.png"
+  },
+  {
+    "source": "base",
+    "name": "ranking_card_self_highlight",
+    "folder": "09_charts_tables_alerts",
+    "box": [
+      1180,
+      555,
+      1515,
+      735
+    ],
+    "path": "/mnt/data/dopalock_assets_transparent/09_charts_tables_alerts/ranking_card_self_highlight.png"
+  },
+  {
+    "source": "base",
+    "name": "alert_success",
+    "folder": "09_charts_tables_alerts",
+    "box": [
+      855,
+      790,
+      1110,
+      832
+    ],
+    "path": "/mnt/data/dopalock_assets_transparent/09_charts_tables_alerts/alert_success.png"
+  },
+  {
+    "source": "base",
+    "name": "alert_warning",
+    "folder": "09_charts_tables_alerts",
+    "box": [
+      855,
+      845,
+      1110,
+      887
+    ],
+    "path": "/mnt/data/dopalock_assets_transparent/09_charts_tables_alerts/alert_warning.png"
+  },
+  {
+    "source": "base",
+    "name": "alert_error",
+    "folder": "09_charts_tables_alerts",
+    "box": [
+      855,
+      900,
+      1110,
+      942
+    ],
+    "path": "/mnt/data/dopalock_assets_transparent/09_charts_tables_alerts/alert_error.png"
+  },
+  {
+    "source": "base",
+    "name": "decor_sparkles_waves_dots",
+    "folder": "09_charts_tables_alerts",
+    "box": [
+      1120,
+      790,
+      1515,
+      860
+    ],
+    "path": "/mnt/data/dopalock_assets_transparent/09_charts_tables_alerts/decor_sparkles_waves_dots.png"
+  },
+  {
+    "source": "base",
+    "name": "background_plants_study_gradient",
+    "folder": "09_charts_tables_alerts",
+    "box": [
+      1120,
+      870,
+      1515,
+      1015
+    ],
+    "path": "/mnt/data/dopalock_assets_transparent/09_charts_tables_alerts/background_plants_study_gradient.png"
+  }
+]
