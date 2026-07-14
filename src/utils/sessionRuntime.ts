@@ -1,5 +1,6 @@
 // 実行中セッションの一時状態（集中↔休憩をまたいで共有・再開する）
 import { loadSettings } from './settings'
+import { loadSessionConfig } from './storage'
 
 export interface SessionRuntime {
   /** 集中の経過（画面表示上の秒数） */
@@ -57,6 +58,18 @@ function write(runtime: SessionRuntime): void {
 
 export function loadSessionRuntime(): SessionRuntime | null {
   return read()
+}
+
+/**
+ * セッションが進行中か。
+ * 進行中はナビゲーションをロックし、「完了する」「脱獄する」以外では画面を離れられない。
+ * runtime はセッション開始時に作られ、結果確定時（成功／脱獄）に削除される。
+ *
+ * config も必須にしている。runtime だけが残った不整合状態でロックすると、
+ * 集中画面（config が無いと /session/new へ退避する）とガードが往復して無限ループになるため。
+ */
+export function isSessionActive(): boolean {
+  return read() !== null && loadSessionConfig() !== null
 }
 
 export function saveSessionRuntime(runtime: SessionRuntime): void {

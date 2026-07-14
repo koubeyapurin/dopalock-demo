@@ -68,6 +68,15 @@ export default function BreakPage() {
     setElapsed(0) // 休憩をリセット
   }
 
+  const handleJailbreak = () => {
+    const lostRate = formatRate(config.plannedRate * 0.8)
+    const ok = window.confirm(
+      `本当に脱獄しますか？\n\n予定レートの80%（-${lostRate} DP/30分）を失い、DPは獲得できません。\n連続成功日数もリセットされます。`,
+    )
+    if (!ok) return
+    navigate('/session/jailbreak')
+  }
+
   return (
     <div className="mx-auto max-w-6xl">
       {/* 上部ミニカード */}
@@ -150,7 +159,7 @@ export default function BreakPage() {
           size="lg"
           fullWidth
           className="order-3"
-          onClick={() => navigate('/session/jailbreak')}
+          onClick={handleJailbreak}
         >
           脱獄する
         </DangerButton>

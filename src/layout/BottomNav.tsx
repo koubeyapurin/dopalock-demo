@@ -3,6 +3,7 @@ import {
   BarChart3,
   BookOpen,
   Home,
+  Lock,
   PlusCircle,
   Settings,
   type LucideIcon,
@@ -32,8 +33,28 @@ const isActiveItem = (pathname: string, item: NavItem): boolean => {
 }
 
 /** スマホ・タブレット幅で表示する下部固定ナビ（PC ではサイドバーを使うため非表示） */
-export default function BottomNav() {
+export default function BottomNav({ locked = false }: { locked?: boolean }) {
   const { pathname } = useLocation()
+
+  // セッション中はナビの代わりに「封印中」を表示する
+  if (locked) {
+    return (
+      <div
+        className="fixed inset-x-0 bottom-0 z-40 border-t border-brand-100 bg-brand-50 lg:hidden"
+        style={{ paddingBottom: 'env(safe-area-inset-bottom)' }}
+      >
+        <div className="flex min-h-[58px] items-center justify-center gap-2 px-4 py-2 text-center">
+          <Lock className="h-4 w-4 shrink-0 text-brand-600" />
+          <p className="text-xs font-bold text-brand-700">
+            セッション進行中
+            <span className="ml-1 font-medium text-brand-500">
+              — 完了 or 脱獄するまで移動できません
+            </span>
+          </p>
+        </div>
+      </div>
+    )
+  }
 
   return (
     <nav

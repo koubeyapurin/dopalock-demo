@@ -94,6 +94,11 @@ export default function FocusSessionPage() {
   }
 
   const handleJailbreak = () => {
+    const lostRate = formatRate(config.plannedRate * 0.8)
+    const ok = window.confirm(
+      `本当に脱獄しますか？\n\n予定レートの80%（-${lostRate} DP/30分）を失い、DPは獲得できません。\n連続成功日数もリセットされます。`,
+    )
+    if (!ok) return
     persistElapsed(elapsedRef.current)
     navigate('/session/jailbreak')
   }
