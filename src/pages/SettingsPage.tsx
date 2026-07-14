@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { GraduationCap, RotateCcw, Settings as SettingsIcon, User, Zap } from 'lucide-react'
 import { Card, IconBadge, DangerButton, PageHeader, SectionTitle } from '../components'
 import { loadSettings, setDemoSpeed } from '../utils/settings'
@@ -6,6 +7,7 @@ import { clearDemoData, clearLastResult, clearSessionConfig, loadUserStats } fro
 import { clearSessionRuntime } from '../utils/sessionRuntime'
 
 export default function SettingsPage() {
+  const navigate = useNavigate()
   const user = loadUserStats()
   const [demoSpeed, setDemo] = useState(() => loadSettings().demoSpeed)
 
@@ -24,7 +26,8 @@ export default function SettingsPage() {
     clearSessionRuntime()
     clearSessionConfig()
     clearLastResult()
-    window.location.href = '/'
+    // ホームへ戻る（各ページは描画時に localStorage を読み直すので初期値に戻る）
+    navigate('/', { replace: true })
   }
 
   return (

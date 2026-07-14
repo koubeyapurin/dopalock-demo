@@ -176,7 +176,11 @@ export default function FocusSessionPage() {
             <StatusRow icon={Ticket} label="5分チケット残数" value={`${ticketsRemaining}枚`} />
             <StatusRow icon={Flame} label="連続成功日数" value={`${user.streakDays}日`} />
             <StatusRow icon={CalendarCheck} label="本日のセッション数" value="1回 / 目標2回" />
-            <StatusRow icon={Activity} label="今日の集中時間" value={formatMinutes(remMin)} />
+            <StatusRow
+              icon={Activity}
+              label="このセッションの経過時間"
+              value={formatMinutes(Math.floor(elapsed / 60))}
+            />
           </ul>
         </Card>
       </div>

@@ -64,7 +64,10 @@ export default function DashboardPage() {
           return `${rd.getFullYear()}-${rd.getMonth()}-${rd.getDate()}` === key
         })
         .reduce((sum, r) => sum + r.actualMinutes, 0)
-      return { label: `${d.getMonth() + 1}/${d.getDate()}`, wd: WEEKDAYS[d.getDay()], minutes }
+      return {
+        label: `${d.getMonth() + 1}/${d.getDate()}（${WEEKDAYS[d.getDay()]}）`,
+        minutes,
+      }
     })
   }, [records])
 
@@ -92,9 +95,9 @@ export default function DashboardPage() {
       </div>
 
       {/* グラフ ＋ 成功率 ＋ ランキング */}
-      <div className="mt-4 grid grid-cols-1 gap-4 lg:grid-cols-3">
+      <div className="mt-4 grid grid-cols-1 gap-4 lg:grid-cols-5">
         {/* 棒グラフ */}
-        <Card className="lg:col-span-1">
+        <Card className="lg:col-span-2">
           <SectionTitle title="最近の集中時間（分）" icon={BarChart3} />
           <div className="mt-4 h-[220px]">
             <ResponsiveContainer width="100%" height="100%">
@@ -102,7 +105,8 @@ export default function DashboardPage() {
                 <CartesianGrid vertical={false} stroke="#eef2f9" />
                 <XAxis
                   dataKey="label"
-                  tick={{ fontSize: 11, fill: '#94a3b8' }}
+                  tick={{ fontSize: 10, fill: '#94a3b8' }}
+                  interval={0}
                   axisLine={false}
                   tickLine={false}
                 />
@@ -119,7 +123,7 @@ export default function DashboardPage() {
         </Card>
 
         {/* 成功率ドーナツ */}
-        <Card className="lg:col-span-1">
+        <Card className="lg:col-span-1 lg:min-w-0">
           <SectionTitle title="成功率" icon={Target} />
           <div className="relative mt-4 h-[220px]">
             <ResponsiveContainer width="100%" height="100%">
@@ -149,7 +153,7 @@ export default function DashboardPage() {
         </Card>
 
         {/* 仮ランキング */}
-        <Card className="lg:col-span-1">
+        <Card className="lg:col-span-2">
           <SectionTitle
             title="仮ランキング（今週）"
             icon={Trophy}

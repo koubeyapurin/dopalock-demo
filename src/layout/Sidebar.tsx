@@ -1,4 +1,4 @@
-import { NavLink } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 import {
   BarChart3,
   BookOpen,
@@ -11,12 +11,24 @@ import {
   Ticket,
   Trophy,
   User,
+  type LucideIcon,
 } from 'lucide-react'
-import { initialUserStats } from '../data/mockData'
+import { cn } from '../lib/cn'
+import { loadUserStats } from '../utils/storage'
 
-const navItems = [
-  { to: '/', label: 'ホーム', icon: Home, end: true },
-  { to: '/session/new', label: 'セッション作成', icon: PlusCircle },
+interface NavItem {
+  to: string
+  label: string
+  icon: LucideIcon
+  /** 完全一致でのみアクティブにする（ホーム用） */
+  exact?: boolean
+  /** このプレフィックスに一致してもアクティブにする（セッションフロー用） */
+  matchPrefix?: string
+}
+
+const navItems: NavItem[] = [
+  { to: '/', label: 'ホーム', icon: Home, exact: true },
+  { to: '/session/new', label: 'セッション作成', icon: PlusCircle, matchPrefix: '/session' },
   { to: '/dashboard', label: 'ダッシュボード', icon: BarChart3 },
   { to: '/history', label: '履歴', icon: History },
   { to: '/ranking', label: 'ランキング', icon: Trophy },
@@ -25,45 +37,52 @@ const navItems = [
   { to: '/settings', label: '設定', icon: Settings },
 ]
 
+/** 現在パスがそのナビ項目に該当するか */
+export function isNavItemActive(pathname: string, item: NavItem): boolean {
+  if (item.exact) return pathname === item.to
+  if (item.matchPrefix) return pathname.startsWith(item.matchPrefix)
+  return pathname.startsWith(item.to)
+}
+
 export default function Sidebar() {
-  const user = initialUserStats
+  const { pathname } = useLocation()
+  // 遷移のたびに再描画されるので、実績（DP）は保存済みの最新値を表示できる
+  const user = loadUserStats()
 
   return (
-    <aside className="sticky top-0 flex h-screen w-64 shrink-0 flex-col bg-gradient-to-b from-navy-800 to-navy-900 text-white">
+    <aside className="sticky top-0 hidden h-screen w-64 shrink-0 flex-col bg-gradient-to-b from-navy-800 to-navy-900 text-white lg:flex">
       {/* ロゴ */}
-      <div className="flex items-center gap-2.5 px-6 py-6">
+      <Link to="/" className="flex items-center gap-2.5 px-6 py-6">
         <div className="grid h-9 w-9 place-items-center rounded-xl bg-brand-500 shadow-lg shadow-brand-500/30">
           <Lock className="h-5 w-5" strokeWidth={2.5} />
         </div>
         <span className="text-xl font-bold tracking-tight">DopaLock</span>
-      </div>
+      </Link>
 
       {/* ナビゲーション */}
       <nav className="flex-1 space-y-1 overflow-y-auto px-3 py-2">
-        {navItems.map(({ to, label, icon: Icon, end }) => (
-          <NavLink
-            key={to}
-            to={to}
-            end={end}
-            className={({ isActive }) =>
-              `flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium transition ${
-                isActive
-                  ? 'bg-white/12 text-white shadow-sm ring-1 ring-white/10'
-                  : 'text-slate-300/90 hover:bg-white/5 hover:text-white'
-              }`
-            }
-          >
-            {({ isActive }) => (
-              <>
-                <Icon
-                  className={`h-5 w-5 ${isActive ? 'text-brand-200' : ''}`}
-                  strokeWidth={2.2}
-                />
-                <span>{label}</span>
-              </>
-            )}
-          </NavLink>
-        ))}
+        {navItems.map((item) => {
+          const active = isNavItemActive(pathname, item)
+          const Icon = item.icon
+          return (
+            <Link
+              key={item.to}
+              to={item.to}
+              className={cn(
+                'flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium transition',
+                active
+                  ? 'bg-white/[0.12] text-white shadow-sm ring-1 ring-white/10'
+                  : 'text-slate-300/90 hover:bg-white/5 hover:text-white',
+              )}
+            >
+              <Icon
+                className={cn('h-5 w-5', active ? 'text-brand-200' : '')}
+                strokeWidth={2.2}
+              />
+              <span>{item.label}</span>
+            </Link>
+          )
+        })}
       </nav>
 
       {/* ユーザー / DP 残高 */}
@@ -79,7 +98,7 @@ export default function Sidebar() {
           <ChevronDown className="h-4 w-4 text-slate-400" />
         </div>
         <div className="mt-2.5 flex items-center gap-2 rounded-xl bg-brand-500/15 px-3 py-2">
-          <span className="grid h-6 w-6 place-items-center rounded-full bg-brand-500 text-[10px] font-bold">
+          <span className="grid h-6 w-6 shrink-0 place-items-center rounded-full bg-brand-500 text-[10px] font-bold">
             DP
           </span>
           <span className="text-base font-bold">{user.currentDP.toLocaleString()}</span>
