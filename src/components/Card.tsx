@@ -13,7 +13,8 @@ export default function Card({ children, compact, className, ...rest }: CardProp
     <div
       className={cn(
         'rounded-2xl border border-slate-100 bg-white shadow-card',
-        compact ? 'p-4' : 'p-6',
+        // スマホでは余白を詰めて、横幅を本文に使えるようにする
+        compact ? 'p-3 md:p-4' : 'p-4 md:p-6',
         className,
       )}
       {...rest}

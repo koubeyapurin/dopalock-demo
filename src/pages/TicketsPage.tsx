@@ -41,7 +41,7 @@ export default function TicketsPage() {
               チケットがありません
             </p>
           )}
-          <PrimaryButton icon={Plus} onClick={addTicket} className="mt-1">
+          <PrimaryButton icon={Plus} size="lg" fullWidth onClick={addTicket} className="mt-1">
             チケットを追加（デモ用）
           </PrimaryButton>
         </Card>
@@ -60,7 +60,7 @@ export default function TicketsPage() {
             <RuleLi>休憩中でも追加でもう1枚使えます</RuleLi>
             <RuleLi>残り0枚のときは使用できません</RuleLi>
           </ul>
-          <div className="mt-4 flex gap-3">
+          <div className="mt-4 grid grid-cols-1 gap-3 sm:flex sm:gap-3">
             <PrimaryButton icon={Coffee} onClick={() => navigate('/session/new')}>
               セッションで使ってみる
             </PrimaryButton>

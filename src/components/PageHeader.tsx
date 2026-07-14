@@ -13,12 +13,14 @@ interface PageHeaderProps {
 /** 各ページ上部の大見出し */
 export default function PageHeader({ title, description, icon, actions }: PageHeaderProps) {
   return (
-    <div className="mb-6 flex items-start justify-between gap-4">
+    <div className="mb-4 flex flex-col gap-3 md:mb-6 md:flex-row md:items-start md:justify-between md:gap-4">
       <div className="flex items-center gap-3">
-        {icon && <IconBadge icon={icon} tone="blue" size="md" />}
-        <div>
-          <h1 className="text-3xl font-bold tracking-tight text-navy">{title}</h1>
-          {description && <p className="mt-1 text-slate-500">{description}</p>}
+        {icon && <IconBadge icon={icon} tone="blue" size="md" className="shrink-0" />}
+        <div className="min-w-0">
+          <h1 className="text-2xl font-bold tracking-tight text-navy md:text-3xl">{title}</h1>
+          {description && (
+            <p className="mt-1 text-sm text-slate-500 md:text-base">{description}</p>
+          )}
         </div>
       </div>
       {actions && <div className="shrink-0">{actions}</div>}

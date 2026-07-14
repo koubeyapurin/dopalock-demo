@@ -28,7 +28,7 @@ import {
   XCircle,
   type LucideIcon,
 } from 'lucide-react'
-import { Card, IconBadge, PageHeader, SectionTitle, StatusPill } from '../components'
+import { Card, IconBadge, PageHeader, SectionTitle, SessionCard, StatusPill } from '../components'
 import {
   MODE_LABELS,
   USAGE_LABELS,
@@ -39,6 +39,7 @@ import {
   withSign,
 } from '../utils/sessionCalc'
 import { loadSessionRecords, loadUserStats } from '../utils/storage'
+import { useIsMobile } from '../hooks/useIsMobile'
 import type { SessionRecord } from '../types'
 
 const WEEKDAYS = ['日', '月', '火', '水', '木', '金', '土']
@@ -47,6 +48,7 @@ export default function DashboardPage() {
   const navigate = useNavigate()
   const user = loadUserStats()
   const records = loadSessionRecords()
+  const isMobile = useIsMobile()
 
   const rate = successRate(user)
   const jbRate = 100 - rate
@@ -64,12 +66,11 @@ export default function DashboardPage() {
           return `${rd.getFullYear()}-${rd.getMonth()}-${rd.getDate()}` === key
         })
         .reduce((sum, r) => sum + r.actualMinutes, 0)
-      return {
-        label: `${d.getMonth() + 1}/${d.getDate()}（${WEEKDAYS[d.getDay()]}）`,
-        minutes,
-      }
+      const md = `${d.getMonth() + 1}/${d.getDate()}`
+      // スマホでは曜日を省いてラベルの重なりを防ぐ
+      return { label: isMobile ? md : `${md}（${WEEKDAYS[d.getDay()]}）`, minutes }
     })
-  }, [records])
+  }, [records, isMobile])
 
   const donutData = [
     { name: '成功', value: rate },
@@ -188,7 +189,19 @@ export default function DashboardPage() {
         {/* セッション履歴 */}
         <Card className="lg:col-span-2">
           <SectionTitle title="セッション履歴" icon={Clock} />
-          <div className="mt-4 overflow-x-auto">
+
+          {/* スマホ：カード一覧 */}
+          <ul className="mt-4 space-y-3 md:hidden">
+            {records.slice(0, 5).map((r) => (
+              <SessionCard key={r.id} record={r} />
+            ))}
+            {records.length === 0 && (
+              <li className="py-6 text-center text-sm text-slate-400">まだ履歴がありません。</li>
+            )}
+          </ul>
+
+          {/* PC：テーブル */}
+          <div className="mt-4 hidden overflow-x-auto md:block">
             <table className="w-full text-sm">
               <thead>
                 <tr className="border-b border-slate-100 text-left text-xs text-slate-400">

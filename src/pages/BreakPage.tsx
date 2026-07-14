@@ -15,6 +15,7 @@ import { Card, DangerButton, IconBadge, PrimaryButton, SecondaryButton } from '.
 import CircularTimer from '../components/CircularTimer'
 import { MODE_LABELS, USAGE_LABELS, formatMS, formatRate } from '../utils/sessionCalc'
 import { loadSessionConfig } from '../utils/storage'
+import { useIsMobile } from '../hooks/useIsMobile'
 import {
   BREAK_TOTAL_SECONDS,
   TICK_MS,
@@ -26,6 +27,7 @@ import {
 export default function BreakPage() {
   const navigate = useNavigate()
   const config = loadSessionConfig()
+  const isMobile = useIsMobile()
 
   useEffect(() => {
     if (!config) navigate('/session/new', { replace: true })
@@ -69,7 +71,7 @@ export default function BreakPage() {
   return (
     <div className="mx-auto max-w-6xl">
       {/* 上部ミニカード */}
-      <div className="grid grid-cols-2 gap-3 lg:grid-cols-5">
+      <div className="grid grid-cols-2 gap-2.5 md:gap-3 lg:grid-cols-5">
         <MiniCard icon={Lock} label="利用形態" value={USAGE_LABELS[config.usageType]} />
         <MiniCard icon={Trophy} label="モード" value={MODE_LABELS[config.mode]} />
         <MiniCard
@@ -90,19 +92,24 @@ export default function BreakPage() {
       </div>
 
       {/* 休憩タイマー */}
-      <Card className="mt-4 flex flex-col items-center justify-center gap-4 py-10">
-        <span className="inline-flex items-center gap-1.5 rounded-full border border-teal-200 bg-teal-50 px-4 py-1.5 text-sm font-bold text-teal-700">
+      <Card className="mt-3 flex flex-col items-center justify-center gap-3 py-8 md:mt-4 md:gap-4 md:py-10">
+        <span className="inline-flex items-center gap-1.5 rounded-full border border-teal-200 bg-teal-50 px-4 py-1.5 text-xs font-bold text-teal-700 md:text-sm">
           <Coffee className="h-4 w-4" />
           5分チケット使用中
         </span>
-        <h1 className="text-2xl font-bold text-teal-600">休憩中</h1>
+        <h1 className="text-xl font-bold text-teal-600 md:text-2xl">休憩中</h1>
 
-        <CircularTimer progress={progress} size={260} stroke={16} color="teal">
+        <CircularTimer
+          progress={progress}
+          size={isMobile ? 220 : 260}
+          stroke={isMobile ? 13 : 16}
+          color="teal"
+        >
           <div className="flex flex-col items-center">
             <span className="mb-1 rounded-full bg-teal-50 px-3 py-0.5 text-xs font-semibold text-teal-600">
               休憩タイマー
             </span>
-            <span className="text-5xl font-bold tabular-nums text-teal-600">
+            <span className="text-4xl font-bold tabular-nums text-teal-600 md:text-5xl">
               {formatMS(remaining)}
             </span>
             <span className="mt-1 text-sm text-slate-400">/ 05:00</span>
@@ -111,26 +118,40 @@ export default function BreakPage() {
 
         <p className="text-sm text-slate-500">5分だけスマホ確認が可能です</p>
 
-        <div className="flex items-center gap-2 rounded-xl bg-teal-50 px-4 py-2.5 text-sm font-medium text-teal-700">
-          <Info className="h-4 w-4" />
+        <div className="flex items-center gap-2 rounded-xl bg-teal-50 px-3 py-2.5 text-center text-xs font-medium text-teal-700 md:px-4 md:text-sm">
+          <Info className="h-4 w-4 shrink-0" />
           休憩終了後、自動的に集中に戻ります
         </div>
       </Card>
 
-      {/* アクション */}
-      <div className="mt-4 grid grid-cols-1 gap-4 sm:grid-cols-3">
+      {/* アクション（スマホでは 集中に戻る → チケット追加 → 脱獄 の順） */}
+      <div className="mt-3 grid grid-cols-1 gap-3 md:mt-4 md:grid-cols-3 md:gap-4">
+        <PrimaryButton
+          icon={Lock}
+          size="lg"
+          fullWidth
+          className="order-1 md:order-2"
+          onClick={() => navigate('/session/focus')}
+        >
+          集中に戻る
+        </PrimaryButton>
         <SecondaryButton
           icon={Ticket}
           size="lg"
+          fullWidth
           disabled={ticketsRemaining <= 0}
+          className="order-2 md:order-1"
           onClick={handleAddTicket}
         >
           5分チケットを追加で使う（残{ticketsRemaining}枚）
         </SecondaryButton>
-        <PrimaryButton icon={Lock} size="lg" onClick={() => navigate('/session/focus')}>
-          集中に戻る
-        </PrimaryButton>
-        <DangerButton icon={Unlock} size="lg" onClick={() => navigate('/session/jailbreak')}>
+        <DangerButton
+          icon={Unlock}
+          size="lg"
+          fullWidth
+          className="order-3"
+          onClick={() => navigate('/session/jailbreak')}
+        >
           脱獄する
         </DangerButton>
       </div>

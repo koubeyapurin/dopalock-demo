@@ -171,14 +171,26 @@ export default function RulesPage() {
         </div>
       </Card>
 
-      {/* 下部CTA */}
-      <div className="mt-6 flex flex-col items-center justify-center gap-4 sm:flex-row">
-        <SecondaryButton icon={Home} size="lg" onClick={() => navigate('/')}>
-          ホームに戻る
-        </SecondaryButton>
-        <PrimaryButton icon={Lock} size="lg" onClick={() => navigate('/session/new')}>
+      {/* 下部CTA（スマホでは縦並び・主要導線を上に） */}
+      <div className="mt-6 grid grid-cols-1 gap-3 md:flex md:items-center md:justify-center md:gap-4">
+        <PrimaryButton
+          icon={Lock}
+          size="lg"
+          fullWidth
+          className="order-1 md:order-2 md:w-auto"
+          onClick={() => navigate('/session/new')}
+        >
           セッションを開始する
         </PrimaryButton>
+        <SecondaryButton
+          icon={Home}
+          size="lg"
+          fullWidth
+          className="order-2 md:order-1 md:w-auto"
+          onClick={() => navigate('/')}
+        >
+          ホームに戻る
+        </SecondaryButton>
       </div>
     </div>
   )

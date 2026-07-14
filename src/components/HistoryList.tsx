@@ -37,10 +37,13 @@ export default function HistoryList({ records, limit }: HistoryListProps) {
                 {r.durationMinutes}分・{MODE_LABELS[r.mode]}
               </p>
             </div>
-            <StatusPill tone={isSuccess ? 'success' : 'danger'}>
+            <StatusPill
+              tone={isSuccess ? 'success' : 'danger'}
+              className="hidden sm:inline-flex"
+            >
               {isSuccess ? '成功' : '脱獄'}
             </StatusPill>
-            <div className="w-20 text-right">
+            <div className="w-20 shrink-0 text-right">
               {isSuccess ? (
                 <span className="text-sm font-bold text-teal-600">+{r.dpChange} DP</span>
               ) : (

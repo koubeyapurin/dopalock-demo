@@ -119,7 +119,7 @@ export default function SessionCreatePage() {
           {/* 利用形態 */}
           <Card>
             <SectionTitle title="利用形態を選ぶ" icon={MapPin} />
-            <div className="mt-4 grid grid-cols-1 gap-3 sm:grid-cols-3">
+            <div className="mt-4 grid grid-cols-1 gap-3 md:grid-cols-3">
               {usageOptions.map((o) => (
                 <SelectableCard
                   key={o.value}
@@ -136,7 +136,7 @@ export default function SessionCreatePage() {
           {/* モード */}
           <Card>
             <SectionTitle title="モードを選ぶ" icon={Users} />
-            <div className="mt-4 grid grid-cols-1 gap-3 sm:grid-cols-3">
+            <div className="mt-4 grid grid-cols-1 gap-3 md:grid-cols-3">
               {modeOptions.map((o) => (
                 <SelectableCard
                   key={o.value}
@@ -153,7 +153,7 @@ export default function SessionCreatePage() {
           {/* 時間 */}
           <Card>
             <SectionTitle title="時間を選ぶ" icon={Clock} />
-            <div className="mt-4 grid grid-cols-2 gap-3 sm:grid-cols-4">
+            <div className="mt-4 grid grid-cols-2 gap-3 md:grid-cols-4">
               {durations.map((d) => (
                 <TimeButton
                   key={d}

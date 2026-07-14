@@ -49,28 +49,34 @@ export default function JailbreakResultPage() {
   return (
     <div className="mx-auto max-w-5xl">
       {/* ヘッダー */}
-      <div className="mb-6 flex items-start justify-between gap-4">
+      <div className="mb-4 flex flex-col gap-3 md:mb-6 md:flex-row md:items-start md:justify-between md:gap-4">
         <div>
-          <h1 className="text-3xl font-bold tracking-tight text-navy">セッション結果</h1>
-          <p className="mt-1 text-slate-500">集中の途中でスマホを確認してしまいました…</p>
+          <h1 className="text-2xl font-bold tracking-tight text-navy md:text-3xl">
+            セッション結果
+          </h1>
+          <p className="mt-1 text-sm text-slate-500 md:text-base">
+            集中の途中でスマホを確認してしまいました…
+          </p>
         </div>
-        <SecondaryButton icon={Share2}>結果をシェア</SecondaryButton>
+        <SecondaryButton icon={Share2} className="w-full md:w-auto">
+          結果をシェア
+        </SecondaryButton>
       </div>
 
       {/* ヒーロー */}
       <Card className="bg-gradient-to-b from-red-50/60 to-white text-center">
-        <div className="flex flex-col items-center py-4">
-          <div className="grid h-20 w-20 place-items-center rounded-full bg-gradient-to-br from-red-300 to-red-500 shadow-lg shadow-red-500/30">
-            <Unlock className="h-10 w-10 text-white" />
+        <div className="flex flex-col items-center py-3 md:py-4">
+          <div className="grid h-16 w-16 place-items-center rounded-full bg-gradient-to-br from-red-300 to-red-500 shadow-lg shadow-red-500/30 md:h-20 md:w-20">
+            <Unlock className="h-8 w-8 text-white md:h-10 md:w-10" />
           </div>
-          <h2 className="mt-4 text-3xl font-bold text-red-500">脱獄</h2>
-          <span className="mt-2 rounded-full bg-red-50 px-4 py-1.5 text-sm font-semibold text-red-600">
+          <h2 className="mt-3 text-2xl font-bold text-red-500 md:mt-4 md:text-3xl">脱獄</h2>
+          <span className="mt-2 rounded-full bg-red-50 px-3 py-1.5 text-xs font-semibold text-red-600 md:px-4 md:text-sm">
             途中でスマホを確認してしまったため、脱獄として記録されました
           </span>
         </div>
 
         {/* 4指標 */}
-        <div className="mt-4 grid grid-cols-2 gap-4 border-t border-slate-100 pt-6 sm:grid-cols-4">
+        <div className="mt-4 grid grid-cols-2 gap-4 border-t border-slate-100 pt-5 md:grid-cols-4 md:pt-6">
           <SummaryStat
             icon={TrendingUp}
             tone="gray"
@@ -119,7 +125,7 @@ export default function JailbreakResultPage() {
       {/* セッション詳細 */}
       <Card className="mt-6">
         <SectionTitle title="セッション詳細" icon={Lock} />
-        <div className="mt-4 grid grid-cols-1 gap-3 sm:grid-cols-2">
+        <div className="mt-4 grid grid-cols-1 gap-3 md:grid-cols-2">
           <DetailRow icon={MapPin} label="利用形態" value={USAGE_LABELS[summary.usageType]} />
           <DetailRow icon={CalendarClock} label="開始時刻" value={formatDateTime(summary.startedAt)} />
           <DetailRow icon={User} label="モード" value={MODE_LABELS[summary.mode]} />
@@ -183,16 +189,34 @@ export default function JailbreakResultPage() {
         </p>
       </div>
 
-      {/* アクション */}
-      <div className="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-3">
-        <SecondaryButton icon={Home} size="lg" onClick={() => navigate('/')}>
-          ホームに戻る
-        </SecondaryButton>
-        <PrimaryButton icon={RotateCcw} size="lg" onClick={() => navigate('/session/new')}>
+      {/* アクション（スマホでは再挑戦を上に） */}
+      <div className="mt-4 grid grid-cols-1 gap-3 md:mt-6 md:grid-cols-3 md:gap-4">
+        <PrimaryButton
+          icon={RotateCcw}
+          size="lg"
+          fullWidth
+          className="order-1 md:order-2"
+          onClick={() => navigate('/session/new')}
+        >
           もう一度挑戦する
         </PrimaryButton>
-        <SecondaryButton icon={BookOpen} size="lg" onClick={() => navigate('/rules')}>
+        <SecondaryButton
+          icon={BookOpen}
+          size="lg"
+          fullWidth
+          className="order-2 md:order-3"
+          onClick={() => navigate('/rules')}
+        >
           ルールを見る
+        </SecondaryButton>
+        <SecondaryButton
+          icon={Home}
+          size="lg"
+          fullWidth
+          className="order-3 md:order-1"
+          onClick={() => navigate('/')}
+        >
+          ホームに戻る
         </SecondaryButton>
       </div>
     </div>

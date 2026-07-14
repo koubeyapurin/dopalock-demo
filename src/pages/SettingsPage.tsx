@@ -83,7 +83,13 @@ export default function SettingsPage() {
           レート・DP・履歴・チケットなどの保存データ（localStorage）を初期状態に戻します。
           デモをやり直したいときに使用してください。
         </p>
-        <DangerButton icon={RotateCcw} className="mt-4" onClick={handleReset}>
+        <DangerButton
+          icon={RotateCcw}
+          size="lg"
+          fullWidth
+          className="mt-4 md:w-auto"
+          onClick={handleReset}
+        >
           デモデータをリセット
         </DangerButton>
       </Card>

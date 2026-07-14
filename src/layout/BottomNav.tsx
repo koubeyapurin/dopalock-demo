@@ -1,5 +1,12 @@
 import { Link, useLocation } from 'react-router-dom'
-import { BarChart3, BookOpen, History, Home, PlusCircle, type LucideIcon } from 'lucide-react'
+import {
+  BarChart3,
+  BookOpen,
+  Home,
+  PlusCircle,
+  Settings,
+  type LucideIcon,
+} from 'lucide-react'
 import { cn } from '../lib/cn'
 
 interface NavItem {
@@ -13,9 +20,9 @@ interface NavItem {
 const navItems: NavItem[] = [
   { to: '/', label: 'ホーム', icon: Home, exact: true },
   { to: '/session/new', label: '作成', icon: PlusCircle, matchPrefix: '/session' },
-  { to: '/history', label: '履歴', icon: History },
   { to: '/dashboard', label: 'ダッシュボード', icon: BarChart3 },
   { to: '/rules', label: 'ルール', icon: BookOpen },
+  { to: '/settings', label: '設定', icon: Settings },
 ]
 
 const isActiveItem = (pathname: string, item: NavItem): boolean => {
@@ -24,7 +31,7 @@ const isActiveItem = (pathname: string, item: NavItem): boolean => {
   return pathname.startsWith(item.to)
 }
 
-/** スマホ幅で表示する下部固定ナビ（PC ではサイドバーを使うため非表示） */
+/** スマホ・タブレット幅で表示する下部固定ナビ（PC ではサイドバーを使うため非表示） */
 export default function BottomNav() {
   const { pathname } = useLocation()
 
@@ -41,13 +48,15 @@ export default function BottomNav() {
             <li key={item.to} className="flex-1">
               <Link
                 to={item.to}
+                aria-current={active ? 'page' : undefined}
                 className={cn(
-                  'flex h-full flex-col items-center justify-center gap-0.5 py-2 text-[11px] font-medium transition',
-                  active ? 'text-brand-600' : 'text-slate-400 hover:text-slate-600',
+                  // タップしやすい高さを確保する
+                  'flex h-full min-h-[58px] flex-col items-center justify-center gap-1 px-1 py-2 text-[10px] font-semibold transition',
+                  active ? 'text-brand-600' : 'text-slate-400 active:text-brand-600',
                 )}
               >
-                <Icon className="h-5 w-5" strokeWidth={2.2} />
-                <span className="max-w-full truncate px-0.5">{item.label}</span>
+                <Icon className="h-5 w-5 shrink-0" strokeWidth={2.2} />
+                <span className="w-full truncate text-center leading-none">{item.label}</span>
               </Link>
             </li>
           )

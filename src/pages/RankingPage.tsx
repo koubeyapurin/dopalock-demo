@@ -38,24 +38,25 @@ export default function RankingPage() {
       />
 
       {/* 自分の順位 */}
-      <Card className="mb-4 flex items-center justify-between bg-gradient-to-r from-brand-50 to-white">
+      <Card className="mb-4 flex flex-col gap-3 bg-gradient-to-r from-brand-50 to-white sm:flex-row sm:items-center sm:justify-between">
         <div className="flex items-center gap-3">
-          <IconBadge icon={Crown} tone="amber" size="md" shape="circle" />
-          <div>
+          <IconBadge icon={Crown} tone="amber" size="md" shape="circle" className="shrink-0" />
+          <div className="min-w-0">
             <p className="text-sm text-slate-500">あなたの現在の順位</p>
             <p className="text-2xl font-bold text-navy">
-              {myRank}位 <span className="text-sm font-medium text-slate-400">/ {ranked.length}人中</span>
+              {myRank}位{' '}
+              <span className="text-sm font-medium text-slate-400">/ {ranked.length}人中</span>
             </p>
           </div>
         </div>
-        <div className="text-right">
+        <div className="flex items-center justify-between gap-4 rounded-xl bg-white/70 px-3 py-2 sm:block sm:bg-transparent sm:px-0 sm:py-0 sm:text-right">
           <p className="text-sm font-bold text-brand-600">{formatRate(user.currentRate)} DP/30分</p>
           <p className="text-xs text-slate-400">DP {user.currentDP.toLocaleString()}</p>
         </div>
       </Card>
 
       {/* 表彰台 */}
-      <div className="mb-4 grid grid-cols-3 gap-3">
+      <div className="mb-4 grid grid-cols-3 gap-2 md:gap-3">
         {podium.map((r, i) => (
           <PodiumCard key={r.name} rank={i + 1} ranker={r} />
         ))}
@@ -87,21 +88,28 @@ const medalClass = (rank: number) =>
 function PodiumCard({ rank, ranker }: { rank: number; ranker: Ranker }) {
   return (
     <div
-      className={`flex flex-col items-center gap-1.5 rounded-2xl border p-4 text-center ${
+      className={`flex flex-col items-center gap-1.5 rounded-2xl border p-3 text-center md:p-4 ${
         ranker.self ? 'border-brand-300 bg-brand-50' : 'border-slate-100 bg-white'
       } shadow-card`}
     >
-      <span className={`grid h-8 w-8 place-items-center rounded-full text-sm font-bold ${medalClass(rank)}`}>
+      <span
+        className={`grid h-7 w-7 place-items-center rounded-full text-xs font-bold md:h-8 md:w-8 md:text-sm ${medalClass(rank)}`}
+      >
         {rank}
       </span>
-      <span className="grid h-11 w-11 place-items-center rounded-full bg-brand-50">
-        <User className="h-5 w-5 text-brand-500" />
+      <span className="grid h-9 w-9 place-items-center rounded-full bg-brand-50 md:h-11 md:w-11">
+        <User className="h-4 w-4 text-brand-500 md:h-5 md:w-5" />
       </span>
-      <p className={`text-sm font-bold ${ranker.self ? 'text-brand-700' : 'text-navy'}`}>
+      <p
+        className={`w-full truncate text-xs font-bold md:text-sm ${ranker.self ? 'text-brand-700' : 'text-navy'}`}
+      >
         {ranker.name}
       </p>
-      <p className="text-xs font-semibold text-brand-600">{formatRate(ranker.rate)} DP/30分</p>
-      <p className="text-[11px] text-slate-400">DP {ranker.dp.toLocaleString()}</p>
+      <p className="text-[11px] font-semibold text-brand-600 md:text-xs">
+        {formatRate(ranker.rate)}
+        <span className="hidden md:inline"> DP/30分</span>
+      </p>
+      <p className="text-[10px] text-slate-400 md:text-[11px]">DP {ranker.dp.toLocaleString()}</p>
     </div>
   )
 }

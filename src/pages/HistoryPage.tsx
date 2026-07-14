@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom'
 import { CheckCircle2, Clock, History, Lock, XCircle } from 'lucide-react'
-import { Card, PageHeader, PrimaryButton, StatusPill } from '../components'
+import { Card, PageHeader, PrimaryButton, SessionCard, StatusPill } from '../components'
 import {
   MODE_LABELS,
   USAGE_LABELS,
@@ -44,26 +44,36 @@ export default function HistoryPage() {
         {records.length === 0 ? (
           <EmptyState onStart={() => navigate('/session/new')} />
         ) : (
-          <div className="overflow-x-auto">
-            <table className="w-full min-w-[720px] text-sm">
-              <thead>
-                <tr className="border-b border-slate-100 text-left text-xs text-slate-400">
-                  <th className="pb-3 pr-3 font-medium">日付</th>
-                  <th className="pb-3 pr-3 font-medium">利用形態</th>
-                  <th className="pb-3 pr-3 font-medium">モード</th>
-                  <th className="pb-3 pr-3 font-medium">時間</th>
-                  <th className="pb-3 pr-3 font-medium">結果</th>
-                  <th className="pb-3 pr-3 text-right font-medium">レート増減</th>
-                  <th className="pb-3 text-right font-medium">DP増減</th>
-                </tr>
-              </thead>
-              <tbody>
-                {records.map((r) => (
-                  <Row key={r.id} record={r} />
-                ))}
-              </tbody>
-            </table>
-          </div>
+          <>
+            {/* スマホ：カード一覧 */}
+            <ul className="space-y-3 md:hidden">
+              {records.map((r) => (
+                <SessionCard key={r.id} record={r} />
+              ))}
+            </ul>
+
+            {/* PC：テーブル */}
+            <div className="hidden overflow-x-auto md:block">
+              <table className="w-full min-w-[720px] text-sm">
+                <thead>
+                  <tr className="border-b border-slate-100 text-left text-xs text-slate-400">
+                    <th className="pb-3 pr-3 font-medium">日付</th>
+                    <th className="pb-3 pr-3 font-medium">利用形態</th>
+                    <th className="pb-3 pr-3 font-medium">モード</th>
+                    <th className="pb-3 pr-3 font-medium">時間</th>
+                    <th className="pb-3 pr-3 font-medium">結果</th>
+                    <th className="pb-3 pr-3 text-right font-medium">レート増減</th>
+                    <th className="pb-3 text-right font-medium">DP増減</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {records.map((r) => (
+                    <Row key={r.id} record={r} />
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </>
         )}
       </Card>
     </div>

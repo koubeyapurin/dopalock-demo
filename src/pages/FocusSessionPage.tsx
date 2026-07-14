@@ -25,6 +25,7 @@ import {
   formatRate,
 } from '../utils/sessionCalc'
 import { loadSessionConfig, loadUserStats } from '../utils/storage'
+import { useIsMobile } from '../hooks/useIsMobile'
 import {
   TICK_MS,
   consumeTicket,
@@ -38,6 +39,7 @@ export default function FocusSessionPage() {
   const navigate = useNavigate()
   const config = loadSessionConfig()
   const user = loadUserStats()
+  const isMobile = useIsMobile()
 
   // 設定が無ければ作成画面へ
   useEffect(() => {
@@ -104,19 +106,23 @@ export default function FocusSessionPage() {
   return (
     <div className="mx-auto max-w-6xl">
       {/* 見出し */}
-      <div className="mb-6 flex items-center gap-3">
-        <IconBadge icon={Lock} tone="blue" size="md" />
-        <div>
+      <div className="mb-4 flex items-center gap-3 md:mb-6">
+        <IconBadge icon={Lock} tone="blue" size="md" className="shrink-0" />
+        <div className="min-w-0">
           <div className="flex items-center gap-2">
-            <h1 className="text-3xl font-bold tracking-tight text-navy">集中セッション中</h1>
-            <span className="h-2.5 w-2.5 animate-pulse rounded-full bg-brand-500" />
+            <h1 className="text-2xl font-bold tracking-tight text-navy md:text-3xl">
+              集中セッション中
+            </h1>
+            <span className="h-2.5 w-2.5 shrink-0 animate-pulse rounded-full bg-brand-500" />
           </div>
-          <p className="mt-1 text-slate-500">スマホはロック中です。集中を続けましょう。</p>
+          <p className="mt-1 text-sm text-slate-500 md:text-base">
+            スマホはロック中です。集中を続けましょう。
+          </p>
         </div>
       </div>
 
       {/* 上部ミニカード */}
-      <div className="grid grid-cols-2 gap-4 lg:grid-cols-4">
+      <div className="grid grid-cols-2 gap-3 md:gap-4 lg:grid-cols-4">
         <MiniCard icon={Lock} label="利用形態" value={USAGE_LABELS[config.usageType]} />
         <MiniCard icon={Trophy} label="モード" value={MODE_LABELS[config.mode]} />
         <MiniCard
@@ -136,22 +142,27 @@ export default function FocusSessionPage() {
       </div>
 
       {/* タイマー ＋ ステータス */}
-      <div className="mt-4 grid grid-cols-1 gap-4 lg:grid-cols-3">
+      <div className="mt-3 grid grid-cols-1 gap-3 md:mt-4 md:gap-4 lg:grid-cols-3">
         {/* タイマー */}
-        <Card className="flex flex-col items-center justify-center gap-4 py-10 lg:col-span-2">
+        <Card className="flex flex-col items-center justify-center gap-3 py-8 md:gap-4 md:py-10 lg:col-span-2">
           <p className="text-sm font-semibold text-slate-400">残り時間</p>
-          <CircularTimer progress={progress} size={260} stroke={16} color="brand">
+          <CircularTimer
+            progress={progress}
+            size={isMobile ? 220 : 260}
+            stroke={isMobile ? 13 : 16}
+            color="brand"
+          >
             <div className="flex flex-col items-center">
-              <Lock className="mb-2 h-7 w-7 text-brand-500" />
-              <span className="text-4xl font-bold tabular-nums text-navy">
+              <Lock className="mb-1.5 h-6 w-6 text-brand-500 md:mb-2 md:h-7 md:w-7" />
+              <span className="text-3xl font-bold tabular-nums text-navy md:text-4xl">
                 {formatHMS(remaining)}
               </span>
             </div>
           </CircularTimer>
-          <p className="text-sm text-slate-500">
+          <p className="text-center text-sm text-slate-500">
             {config.durationMinutes}分セッション中 / 残り{remMin}分{remSec}秒
           </p>
-          <span className="inline-flex items-center gap-1.5 rounded-full bg-brand-50 px-3 py-1.5 text-sm font-semibold text-brand-700">
+          <span className="inline-flex items-center gap-1.5 rounded-full bg-brand-50 px-3 py-1.5 text-xs font-semibold text-brand-700 md:text-sm">
             <Lock className="h-4 w-4" />
             スマホはロックされています
           </span>
@@ -185,26 +196,40 @@ export default function FocusSessionPage() {
         </Card>
       </div>
 
-      {/* アクション */}
-      <div className="mt-4 grid grid-cols-1 gap-4 sm:grid-cols-3">
+      {/* アクション（スマホでは 完了 → チケット → 脱獄 の順で、誤タップしにくくする） */}
+      <div className="mt-3 grid grid-cols-1 gap-3 md:mt-4 md:grid-cols-3 md:gap-4">
+        <PrimaryButton
+          icon={CheckCircle2}
+          size="lg"
+          fullWidth
+          className="order-1 md:order-3"
+          onClick={handleComplete}
+        >
+          完了する
+        </PrimaryButton>
         <SecondaryButton
           icon={Coffee}
           size="lg"
+          fullWidth
           disabled={ticketsRemaining <= 0}
+          className="order-2 md:order-1"
           onClick={handleUseTicket}
         >
           5分チケットを使う（残{ticketsRemaining}枚）
         </SecondaryButton>
-        <DangerButton icon={Unlock} size="lg" onClick={handleJailbreak}>
+        <DangerButton
+          icon={Unlock}
+          size="lg"
+          fullWidth
+          className="order-3 md:order-2"
+          onClick={handleJailbreak}
+        >
           脱獄する
         </DangerButton>
-        <PrimaryButton icon={CheckCircle2} size="lg" onClick={handleComplete}>
-          完了する
-        </PrimaryButton>
       </div>
 
-      <p className="mt-3 flex items-center justify-center gap-1.5 text-xs text-slate-400">
-        <ShieldAlert className="h-4 w-4" />
+      <p className="mt-3 flex items-start justify-center gap-1.5 px-2 text-center text-xs text-slate-400">
+        <ShieldAlert className="mt-0.5 h-4 w-4 shrink-0" />
         脱獄すると、予定レートの80%を失い、連続成功日数がリセットされます。
       </p>
     </div>
