@@ -158,7 +158,7 @@ export function calcResult(
 export function createSessionRecord(
   config: SessionConfig,
   result: SessionResult,
-  options: { usedTicket: boolean; actualMinutes: number; date?: Date },
+  options: { usedTicket: boolean; actualMinutes: number; awayCount?: number; date?: Date },
 ): SessionRecord {
   const { rateChange, dpChange } = calcResult(config, result)
   const date = options.date ?? new Date()
@@ -173,6 +173,8 @@ export function createSessionRecord(
     dpChange,
     usedTicket: options.usedTicket,
     actualMinutes: options.actualMinutes,
+    goal: config.goal,
+    awayCount: options.awayCount ?? 0,
   }
 }
 

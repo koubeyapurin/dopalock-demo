@@ -4,6 +4,7 @@ import {
   CalendarClock,
   Clock,
   Coins,
+  EyeOff,
   Flag,
   Home,
   Lightbulb,
@@ -11,6 +12,7 @@ import {
   MapPin,
   RotateCcw,
   Share2,
+  Target,
   Ticket,
   TrendingDown,
   TrendingUp,
@@ -23,6 +25,7 @@ import {
   HistoryList,
   IconBadge,
   PrimaryButton,
+  ReflectionForm,
   SecondaryButton,
   SectionTitle,
 } from '../components'
@@ -32,9 +35,10 @@ import {
   MODE_LABELS,
   USAGE_LABELS,
   formatDateTime,
-  formatMS,
+  formatMinutes,
   formatRate,
 } from '../utils/sessionCalc'
+import { estimateRank } from '../utils/ranking'
 
 export default function JailbreakResultPage() {
   const navigate = useNavigate()
@@ -43,8 +47,13 @@ export default function JailbreakResultPage() {
 
   if (!summary) return null
 
-  const remainingSeconds = Math.max(0, (summary.durationMinutes - summary.actualMinutes) * 60)
+  const remainingMinutes = Math.max(0, summary.durationMinutes - summary.actualMinutes)
   const focusRate = Math.round((summary.actualMinutes / summary.durationMinutes) * 100)
+
+  // レートが下がったぶん、学内順位も下がる
+  const rankBefore = estimateRank(summary.rateBefore)
+  const rankAfter = estimateRank(summary.rateAfter)
+  const rankDown = rankAfter - rankBefore
 
   return (
     <div className="mx-auto max-w-5xl">
@@ -105,7 +114,7 @@ export default function JailbreakResultPage() {
             icon={Clock}
             tone="navy"
             label="セッション時間"
-            value={formatMS(summary.actualMinutes * 60)}
+            value={`${summary.actualMinutes}`}
             unit="分"
             valueClass="text-navy"
           />
@@ -140,8 +149,18 @@ export default function JailbreakResultPage() {
             value={summary.usedTicket ? '使用あり' : '使用なし'}
           />
           <DetailRow icon={Unlock} label="結果" value="脱獄" valueClass="text-red-500" />
+          <DetailRow
+            icon={EyeOff}
+            label="離脱検知（タブ・画面）"
+            value={`${summary.awayCount ?? 0}回`}
+            valueClass={summary.awayCount ? 'text-amber-600' : 'text-navy'}
+          />
+          <DetailRow icon={Target} label="学習目標" value={summary.goal ?? '未設定'} />
         </div>
       </Card>
+
+      {/* 振り返り入力（保存しても レート・DP は変動しない） */}
+      <ReflectionForm recordId={summary.recordId} goal={summary.goal} />
 
       {/* 今回のまとめ ＋ 最近の履歴 */}
       <div className="mt-6 grid grid-cols-1 gap-6 lg:grid-cols-2">
@@ -150,7 +169,8 @@ export default function JailbreakResultPage() {
           <div className="mt-4 rounded-xl bg-red-50 p-4">
             <p className="text-sm text-red-600">
               あと{' '}
-              <span className="text-xl font-bold">{formatMS(remainingSeconds)}</span> 継続できていれば成功でした！
+              <span className="text-xl font-bold">{formatMinutes(remainingMinutes)}</span>{' '}
+              継続できていれば成功でした！
             </p>
             <p className="mt-1 text-xs text-red-500">
               小さな積み重ねが、大きな集中力になります。
@@ -159,6 +179,12 @@ export default function JailbreakResultPage() {
           <div className="mt-3 grid grid-cols-2 gap-3">
             <MiniStat label="集中率" value={`${focusRate}%`} note="あと少し！" />
             <MiniStat label="次の目標" value={`${summary.durationMinutes}分達成`} note="リベンジしよう！" />
+            <MiniStat
+              className="col-span-2"
+              label="学内ランキング"
+              value={`${rankBefore}位 → ${rankAfter}位`}
+              note={rankDown > 0 ? `${rankDown}位ダウン` : '順位の変動なし'}
+            />
           </div>
         </Card>
 
@@ -273,9 +299,19 @@ function DetailRow({
 }
 
 /** 小さな指標 */
-function MiniStat({ label, value, note }: { label: string; value: string; note: string }) {
+function MiniStat({
+  label,
+  value,
+  note,
+  className = '',
+}: {
+  label: string
+  value: string
+  note: string
+  className?: string
+}) {
   return (
-    <div className="rounded-xl bg-slate-50 p-3 text-center">
+    <div className={`rounded-xl bg-slate-50 p-3 text-center ${className}`}>
       <p className="text-xs text-slate-400">{label}</p>
       <p className="mt-1 text-lg font-bold text-navy">{value}</p>
       <p className="text-[11px] text-slate-400">{note}</p>

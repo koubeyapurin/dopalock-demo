@@ -1,4 +1,10 @@
-import type { SessionConfig, SessionRecord, SessionResultSummary, UserStats } from '../types'
+import type {
+  SessionConfig,
+  SessionRecord,
+  SessionReflection,
+  SessionResultSummary,
+  UserStats,
+} from '../types'
 import { initialSessionRecords, initialUserStats } from '../data/mockData'
 
 const STATS_KEY = 'dopalock:userStats'
@@ -47,6 +53,22 @@ export function addSessionRecord(record: SessionRecord): SessionRecord[] {
   const next = [record, ...loadSessionRecords()]
   saveSessionRecords(next)
   return next
+}
+
+/**
+ * 既存の記録に振り返りを後追いで書き込む。
+ * 記録の追加ではなく「上書き」なので、レート・DP は再加算されない。
+ */
+export function saveReflection(recordId: string, reflection: SessionReflection): void {
+  const next = loadSessionRecords().map((r) =>
+    r.id === recordId ? { ...r, reflection } : r,
+  )
+  saveSessionRecords(next)
+}
+
+/** 記録に紐づく振り返りを取得する（未入力なら null） */
+export function loadReflection(recordId: string): SessionReflection | null {
+  return loadSessionRecords().find((r) => r.id === recordId)?.reflection ?? null
 }
 
 // ---- 進行中セッションの設定 -----------------------------------------------

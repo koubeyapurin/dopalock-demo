@@ -4,6 +4,7 @@ import {
   CalendarClock,
   Clock,
   Coins,
+  EyeOff,
   Flag,
   Home,
   Lock,
@@ -11,6 +12,7 @@ import {
   PartyPopper,
   RotateCcw,
   Share2,
+  Target,
   Ticket,
   TrendingUp,
   Trophy,
@@ -22,18 +24,14 @@ import {
   HistoryList,
   IconBadge,
   PrimaryButton,
+  ReflectionForm,
   SecondaryButton,
   SectionTitle,
 } from '../components'
 import { useSessionResult } from '../hooks/useSessionResult'
 import { loadSessionRecords } from '../utils/storage'
-import {
-  MODE_LABELS,
-  USAGE_LABELS,
-  formatDateTime,
-  formatMS,
-  formatRate,
-} from '../utils/sessionCalc'
+import { MODE_LABELS, USAGE_LABELS, formatDateTime, formatRate } from '../utils/sessionCalc'
+import { estimateRank } from '../utils/ranking'
 
 export default function SuccessResultPage() {
   const navigate = useNavigate()
@@ -41,6 +39,11 @@ export default function SuccessResultPage() {
   const records = loadSessionRecords()
 
   if (!summary) return null
+
+  // レートが上がったぶん、学内順位が実際にいくつ上がったかを計算する
+  const rankBefore = estimateRank(summary.rateBefore)
+  const rankAfter = estimateRank(summary.rateAfter)
+  const rankUp = rankBefore - rankAfter
 
   return (
     <div className="mx-auto max-w-5xl">
@@ -95,7 +98,7 @@ export default function SuccessResultPage() {
             icon={Clock}
             tone="navy"
             label="セッション時間"
-            value={formatMS(summary.actualMinutes * 60)}
+            value={`${summary.actualMinutes}`}
             unit="分"
             valueClass="text-navy"
           />
@@ -130,8 +133,18 @@ export default function SuccessResultPage() {
             value={summary.usedTicket ? '使用あり' : '使用なし'}
           />
           <DetailRow icon={Lock} label="脱獄" value="なし（成功 ✨）" valueClass="text-teal-600" />
+          <DetailRow
+            icon={EyeOff}
+            label="離脱検知（タブ・画面）"
+            value={`${summary.awayCount ?? 0}回`}
+            valueClass={summary.awayCount ? 'text-amber-600' : 'text-navy'}
+          />
+          <DetailRow icon={Target} label="学習目標" value={summary.goal ?? '未設定'} />
         </div>
       </Card>
+
+      {/* 振り返り入力（保存しても レート・DP は変動しない） */}
+      <ReflectionForm recordId={summary.recordId} goal={summary.goal} />
 
       {/* 今回の成果 ＋ 最近の履歴 */}
       <div className="mt-6 grid grid-cols-1 gap-6 lg:grid-cols-2">
@@ -150,7 +163,12 @@ export default function SuccessResultPage() {
               to={summary.dpAfter.toLocaleString()}
               delta={`+${summary.dpChange}`}
             />
-            <ResultDelta label="ランキング" from="124位" to="118位" delta="+6" />
+            <ResultDelta
+              label="学内ランキング"
+              from={`${rankBefore}位`}
+              to={`${rankAfter}位`}
+              delta={rankUp > 0 ? `+${rankUp}` : `${rankUp}`}
+            />
           </div>
         </Card>
 

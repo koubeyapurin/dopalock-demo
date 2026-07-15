@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { Navigate, useNavigate } from 'react-router-dom'
 import {
   Coffee,
   Coins,
@@ -11,7 +11,14 @@ import {
   Unlock,
   type LucideIcon,
 } from 'lucide-react'
-import { Card, DangerButton, IconBadge, PrimaryButton, SecondaryButton } from '../components'
+import {
+  Card,
+  ConfirmDialog,
+  DangerButton,
+  IconBadge,
+  PrimaryButton,
+  SecondaryButton,
+} from '../components'
 import CircularTimer from '../components/CircularTimer'
 import { MODE_LABELS, USAGE_LABELS, formatMS, formatRate } from '../utils/sessionCalc'
 import { loadSessionConfig } from '../utils/storage'
@@ -23,20 +30,22 @@ import {
   displaySecondsPerTick,
   loadSessionRuntime,
 } from '../utils/sessionRuntime'
+import type { SessionConfig } from '../types'
 
+/** 設定が無ければ作成画面へ（フック呼び出しの前に return しないよう、外側で振り分ける） */
 export default function BreakPage() {
-  const navigate = useNavigate()
   const config = loadSessionConfig()
-  const isMobile = useIsMobile()
+  if (!config) return <Navigate to="/session/new" replace />
+  return <Break config={config} />
+}
 
-  useEffect(() => {
-    if (!config) navigate('/session/new', { replace: true })
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
-  if (!config) return null
+function Break({ config }: { config: SessionConfig }) {
+  const navigate = useNavigate()
+  const isMobile = useIsMobile()
 
   const runtime = loadSessionRuntime()
   const [ticketsRemaining, setTicketsRemaining] = useState(() => runtime?.ticketsRemaining ?? 0)
+  const [confirmJailbreak, setConfirmJailbreak] = useState(false)
 
   // 休憩カウントダウン（デモ加速：5分 → 実時間およそ15秒）
   const [elapsed, setElapsed] = useState(0)
@@ -68,14 +77,7 @@ export default function BreakPage() {
     setElapsed(0) // 休憩をリセット
   }
 
-  const handleJailbreak = () => {
-    const lostRate = formatRate(config.plannedRate * 0.8)
-    const ok = window.confirm(
-      `本当に脱獄しますか？\n\n予定レートの80%（-${lostRate} DP/30分）を失い、DPは獲得できません。\n連続成功日数もリセットされます。`,
-    )
-    if (!ok) return
-    navigate('/session/jailbreak')
-  }
+  const handleJailbreak = () => navigate('/session/jailbreak')
 
   return (
     <div className="mx-auto max-w-6xl">
@@ -139,7 +141,7 @@ export default function BreakPage() {
           icon={Lock}
           size="lg"
           fullWidth
-          className="order-1 md:order-2"
+          className="order-1 min-h-[52px] md:order-2"
           onClick={() => navigate('/session/focus')}
         >
           集中に戻る
@@ -149,7 +151,7 @@ export default function BreakPage() {
           size="lg"
           fullWidth
           disabled={ticketsRemaining <= 0}
-          className="order-2 md:order-1"
+          className="order-2 min-h-[52px] md:order-1"
           onClick={handleAddTicket}
         >
           5分チケットを追加で使う（残{ticketsRemaining}枚）
@@ -158,12 +160,28 @@ export default function BreakPage() {
           icon={Unlock}
           size="lg"
           fullWidth
-          className="order-3"
-          onClick={handleJailbreak}
+          className="order-3 min-h-[52px]"
+          onClick={() => setConfirmJailbreak(true)}
         >
           脱獄する
         </DangerButton>
       </div>
+
+      <ConfirmDialog
+        open={confirmJailbreak}
+        title="本当に脱獄しますか？"
+        icon={Unlock}
+        tone="red"
+        danger
+        message={[
+          `予定レートの80%（-${formatRate(config.plannedRate * 0.8)} DP/30分）を失います。`,
+          'DPは獲得できず、連続成功日数もリセットされます。',
+        ]}
+        confirmLabel="脱獄する"
+        cancelLabel="休憩を続ける"
+        onConfirm={handleJailbreak}
+        onCancel={() => setConfirmJailbreak(false)}
+      />
     </div>
   )
 }

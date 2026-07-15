@@ -13,6 +13,7 @@ import {
   MapPin,
   Smartphone,
   Store,
+  Target,
   TrendingUp,
   User,
   Users,
@@ -85,6 +86,9 @@ const modeOptions: Option<SessionMode>[] = [
 const durations: Duration[] = [30, 60, 90, 120]
 const RECOMMENDED_DURATION: Duration = 60
 
+/** 目標入力のヒント（タップで入力できるようにして、スマホでの入力負荷を下げる） */
+const GOAL_EXAMPLES = ['英語の課題を終わらせる', '数学の演習を20問', 'レポートの下書きを書く']
+
 export default function SessionCreatePage() {
   const navigate = useNavigate()
 
@@ -92,8 +96,12 @@ export default function SessionCreatePage() {
   const [usage, setUsage] = useState<UsageType>('partner')
   const [mode, setMode] = useState<SessionMode>('coop')
   const [duration, setDuration] = useState<Duration>(60)
+  const [goal, setGoal] = useState('')
 
-  const config = useMemo(() => buildSessionConfig(usage, mode, duration), [usage, mode, duration])
+  const config = useMemo(
+    () => ({ ...buildSessionConfig(usage, mode, duration), goal: goal.trim() || undefined }),
+    [usage, mode, duration, goal],
+  )
 
   const selectedUsage = usageOptions.find((o) => o.value === usage)!
   const selectedMode = modeOptions.find((o) => o.value === mode)!
@@ -150,6 +158,34 @@ export default function SessionCreatePage() {
             </div>
           </Card>
 
+          {/* 学習目標 */}
+          <Card>
+            <SectionTitle title="今回の学習目標を決める" icon={Target} />
+            <p className="mt-2 text-sm text-slate-500">
+              集中の前に目標を宣言すると、終了後に達成できたかを振り返れます（任意）。
+            </p>
+            <input
+              type="text"
+              value={goal}
+              maxLength={40}
+              onChange={(e) => setGoal(e.target.value)}
+              placeholder="例：英語のレポートを1本仕上げる"
+              className="mt-3 min-h-[52px] w-full rounded-xl border border-slate-200 px-4 py-3 text-sm text-navy placeholder:text-slate-400 focus:border-brand-400 focus:outline-none focus:ring-2 focus:ring-brand-100"
+            />
+            <div className="mt-3 flex flex-wrap gap-2">
+              {GOAL_EXAMPLES.map((g) => (
+                <button
+                  key={g}
+                  type="button"
+                  onClick={() => setGoal(g)}
+                  className="rounded-full border border-slate-200 bg-white px-3 py-1.5 text-xs font-medium text-slate-600 transition hover:border-brand-200 hover:bg-brand-50 hover:text-brand-700"
+                >
+                  {g}
+                </button>
+              ))}
+            </div>
+          </Card>
+
           {/* 時間 */}
           <Card>
             <SectionTitle title="時間を選ぶ" icon={Clock} />
@@ -176,6 +212,11 @@ export default function SessionCreatePage() {
               <SummaryRow icon={selectedUsage.icon} label="利用形態" value={selectedUsage.label} />
               <SummaryRow icon={selectedMode.icon} label="モード" value={selectedMode.label} />
               <SummaryRow icon={Clock} label="時間" value={`${duration}分`} />
+              <SummaryRow
+                icon={Target}
+                label="学習目標"
+                value={config.goal ?? '未設定（あとで振り返れません）'}
+              />
             </div>
 
             <div className="my-4 border-t border-slate-100" />
@@ -223,7 +264,7 @@ export default function SessionCreatePage() {
               fullWidth
               icon={Lock}
               iconRight={ChevronRight}
-              className="mt-5"
+              className="mt-5 min-h-[52px]"
               onClick={handleStart}
             >
               セッション開始

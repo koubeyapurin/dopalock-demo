@@ -2,32 +2,23 @@ import { Coins, Crown, TrendingUp, Trophy, User } from 'lucide-react'
 import { Card, IconBadge, PageHeader, SectionTitle } from '../components'
 import { formatRate } from '../utils/sessionCalc'
 import { loadUserStats } from '../utils/storage'
+import {
+  TOTAL_STUDENTS,
+  getMyRanker,
+  getNeighborRankers,
+  getTopRankers,
+  type Ranker,
+} from '../utils/ranking'
 
-interface Ranker {
-  name: string
-  rate: number
-  dp: number
-  self?: boolean
-}
+const TOP_COUNT = 10
 
 export default function RankingPage() {
   const user = loadUserStats()
 
-  // 仮の他ユーザー ＋ 自分を合成して順位付け
-  const others: Ranker[] = [
-    { name: 'ゆうと', rate: 2.8, dp: 3120 },
-    { name: 'きょうへい', rate: 2.5, dp: 2890 },
-    { name: 'あやか', rate: 2.3, dp: 2760 },
-    { name: 'しゅん', rate: 2.1, dp: 2510 },
-    { name: 'みなと', rate: 1.9, dp: 2280 },
-    { name: 'さくら', rate: 1.7, dp: 2040 },
-    { name: 'れん', rate: 1.4, dp: 1760 },
-  ]
-  const ranked = [...others, { name: 'あなた', rate: user.currentRate, dp: user.currentDP, self: true }]
-    .sort((a, b) => b.rate - a.rate || b.dp - a.dp)
-
-  const myRank = ranked.findIndex((r) => r.self) + 1
-  const podium = ranked.slice(0, 3)
+  const me = getMyRanker(user)
+  const topList = getTopRankers(TOP_COUNT, me)
+  const neighbors = getNeighborRankers(me, TOP_COUNT)
+  const podium = topList.slice(0, 3)
 
   return (
     <div className="mx-auto max-w-4xl">
@@ -44,8 +35,8 @@ export default function RankingPage() {
           <div className="min-w-0">
             <p className="text-sm text-slate-500">あなたの現在の順位</p>
             <p className="text-2xl font-bold text-navy">
-              {myRank}位{' '}
-              <span className="text-sm font-medium text-slate-400">/ {ranked.length}人中</span>
+              {me.rank}位{' '}
+              <span className="text-sm font-medium text-slate-400">/ {TOTAL_STUDENTS}人中</span>
             </p>
           </div>
         </div>
@@ -57,20 +48,38 @@ export default function RankingPage() {
 
       {/* 表彰台 */}
       <div className="mb-4 grid grid-cols-3 gap-2 md:gap-3">
-        {podium.map((r, i) => (
-          <PodiumCard key={r.name} rank={i + 1} ranker={r} />
+        {podium.map((r) => (
+          <PodiumCard key={r.name} rank={r.rank} ranker={r} />
         ))}
       </div>
 
-      {/* ランキング一覧 */}
+      {/* 上位 ＋ 自分の周辺 */}
       <Card>
-        <SectionTitle title="全体ランキング" icon={TrendingUp} />
+        <SectionTitle title={`学内トップ${TOP_COUNT}`} icon={TrendingUp} />
         <ul className="mt-4 space-y-1.5">
-          {ranked.map((r, i) => (
-            <RankRow key={r.name} rank={i + 1} ranker={r} />
+          {topList.map((r) => (
+            <RankRow key={r.name} rank={r.rank} ranker={r} />
           ))}
         </ul>
-        <p className="mt-3 text-center text-[11px] text-slate-400">※ ランキングは仮のデータです</p>
+
+        {neighbors.length > 0 && (
+          <>
+            <div className="my-4 flex items-center gap-3">
+              <span className="h-px flex-1 bg-slate-100" />
+              <span className="text-xs font-medium text-slate-400">あなたの周辺</span>
+              <span className="h-px flex-1 bg-slate-100" />
+            </div>
+            <ul className="space-y-1.5">
+              {neighbors.map((r) => (
+                <RankRow key={r.name} rank={r.rank} ranker={r} />
+              ))}
+            </ul>
+          </>
+        )}
+
+        <p className="mt-3 text-center text-[11px] text-slate-400">
+          ※ 自分以外は仮のデータです（全{TOTAL_STUDENTS}人中）
+        </p>
       </Card>
     </div>
   )

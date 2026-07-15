@@ -56,6 +56,7 @@ export function useSessionResult(result: SessionResult): SessionResultSummary | 
     const record = createSessionRecord(config, result, {
       usedTicket: runtime.usedTicket,
       actualMinutes,
+      awayCount: runtime.awayCount ?? 0,
     })
 
     const applied = applySessionToStats(stats, record)
@@ -70,6 +71,9 @@ export function useSessionResult(result: SessionResult): SessionResultSummary | 
 
     const now = new Date()
     const data: SessionResultSummary = {
+      recordId: record.id,
+      goal: config.goal,
+      awayCount: runtime.awayCount ?? 0,
       result,
       usageType: config.usageType,
       mode: config.mode,

@@ -32,6 +32,21 @@ export interface SessionConfig {
   durationMinutes: Duration
   plannedRate: number
   plannedDP: number
+  /** 今回の学習目標（任意。旧データとの互換のため optional） */
+  goal?: string
+}
+
+/** 目標の達成度（振り返り入力） */
+export type GoalAchievement = 'full' | 'partial' | 'none'
+
+/** セッション終了後の振り返り */
+export interface SessionReflection {
+  /** 目標達成度 */
+  achievement: GoalAchievement
+  /** 自己評価の集中度（1〜5） */
+  focusScore: number
+  /** 振り返りメモ（任意） */
+  note?: string
 }
 
 /** セッション進行フェーズ */
@@ -39,6 +54,11 @@ export type SessionPhase = 'idle' | 'focus' | 'break'
 
 /** 結果画面（成功／脱獄）に渡すサマリー */
 export interface SessionResultSummary {
+  /** 対応する SessionRecord の id（振り返りの後追い保存に使う） */
+  recordId?: string
+  goal?: string
+  /** セッション中にタブ・画面を離れた回数 */
+  awayCount?: number
   result: SessionResult
   usageType: UsageType
   mode: SessionMode
@@ -73,4 +93,10 @@ export interface SessionRecord {
   dpChange: number
   usedTicket: boolean
   actualMinutes: number
+  /** 開始時に入力した学習目標（任意） */
+  goal?: string
+  /** セッション中にタブ・画面を離れた回数（任意） */
+  awayCount?: number
+  /** 終了後の振り返り（未入力なら undefined） */
+  reflection?: SessionReflection
 }

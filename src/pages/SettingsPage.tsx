@@ -1,15 +1,24 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { GraduationCap, RotateCcw, Settings as SettingsIcon, User, Zap } from 'lucide-react'
-import { Card, IconBadge, DangerButton, PageHeader, SectionTitle } from '../components'
+import { GraduationCap, Play, RotateCcw, Settings as SettingsIcon, User, Zap } from 'lucide-react'
+import {
+  Card,
+  ConfirmDialog,
+  IconBadge,
+  DangerButton,
+  PageHeader,
+  PrimaryButton,
+  SectionTitle,
+} from '../components'
 import { loadSettings, setDemoSpeed } from '../utils/settings'
-import { clearDemoData, clearLastResult, clearSessionConfig, loadUserStats } from '../utils/storage'
-import { clearSessionRuntime } from '../utils/sessionRuntime'
+import { loadUserStats } from '../utils/storage'
+import { QUICK_DEMO_GOAL, resetAllDemoData, startQuickDemo } from '../utils/demo'
 
 export default function SettingsPage() {
   const navigate = useNavigate()
   const user = loadUserStats()
   const [demoSpeed, setDemo] = useState(() => loadSettings().demoSpeed)
+  const [confirmReset, setConfirmReset] = useState(false)
 
   const toggleDemoSpeed = () => {
     const next = !demoSpeed
@@ -17,17 +26,17 @@ export default function SettingsPage() {
     setDemo(next)
   }
 
+  const handleQuickStart = () => {
+    startQuickDemo()
+    navigate('/session/focus')
+  }
+
   const handleReset = () => {
-    const ok = window.confirm(
-      'デモデータを初期状態にリセットします。よろしいですか？\n（実績・履歴・進行中セッションがすべて初期化されます）',
-    )
-    if (!ok) return
-    clearDemoData()
-    clearSessionRuntime()
-    clearSessionConfig()
-    clearLastResult()
-    // ホームへ戻る（各ページは描画時に localStorage を読み直すので初期値に戻る）
+    resetAllDemoData()
+    setConfirmReset(false)
+    // ホームへ戻ってから再読込（各画面は描画時に localStorage を読むため）
     navigate('/', { replace: true })
+    window.location.reload()
   }
 
   return (
@@ -74,6 +83,26 @@ export default function SettingsPage() {
             ? 'ON：表示1分がおよそ実3秒で進みます。'
             : 'OFF：ほぼ実時間で進みます（デモ中は待ち時間が長くなります）。'}
         </p>
+
+        {/* ワンクリックデモ開始 */}
+        <div className="mt-4 flex flex-col gap-3 rounded-xl bg-brand-50/60 p-4 md:flex-row md:items-center md:justify-between">
+          <div className="flex items-start gap-3">
+            <IconBadge icon={Play} tone="blue" size="sm" />
+            <div className="min-w-0">
+              <p className="text-sm font-semibold text-navy">ワンクリックでデモ開始</p>
+              <p className="text-xs text-slate-500">
+                提携店舗 / 協力モード / 60分・目標「{QUICK_DEMO_GOAL}」で即開始します。
+              </p>
+            </div>
+          </div>
+          <PrimaryButton
+            icon={Play}
+            className="min-h-[48px] shrink-0 whitespace-nowrap"
+            onClick={handleQuickStart}
+          >
+            デモ開始
+          </PrimaryButton>
+        </div>
       </Card>
 
       {/* データ管理 */}
@@ -87,12 +116,27 @@ export default function SettingsPage() {
           icon={RotateCcw}
           size="lg"
           fullWidth
-          className="mt-4 md:w-auto"
-          onClick={handleReset}
+          className="mt-4 min-h-[52px] md:w-auto"
+          onClick={() => setConfirmReset(true)}
         >
           デモデータをリセット
         </DangerButton>
       </Card>
+
+      <ConfirmDialog
+        open={confirmReset}
+        title="デモデータをリセットしますか？"
+        icon={RotateCcw}
+        tone="red"
+        danger
+        message={[
+          'レート・DP・履歴・チケット・進行中セッションがすべて初期状態に戻ります。',
+          'この操作は元に戻せません。',
+        ]}
+        confirmLabel="リセットする"
+        onConfirm={handleReset}
+        onCancel={() => setConfirmReset(false)}
+      />
     </div>
   )
 }

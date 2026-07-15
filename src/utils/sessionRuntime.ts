@@ -13,6 +13,10 @@ export interface SessionRuntime {
   ticketsUsed: number
   /** チケットを1枚でも使ったか */
   usedTicket: boolean
+  /** 集中中にタブ・画面を離れた回数（古い保存データには無いため optional） */
+  awayCount?: number
+  /** 集中中に離れていた合計秒数（実時間） */
+  awaySeconds?: number
 }
 
 const RUNTIME_KEY = 'dopalock:sessionRuntime'
@@ -84,9 +88,27 @@ export function initSessionRuntime(totalSeconds: number, tickets: number): Sessi
     ticketsRemaining: tickets,
     ticketsUsed: 0,
     usedTicket: false,
+    awayCount: 0,
+    awaySeconds: 0,
   }
   write(runtime)
   return runtime
+}
+
+/**
+ * 集中中の離脱（タブ切替・画面非表示）を1回ぶん記録する。
+ * 休憩中は正規の離席なので、呼び出し側（集中画面）でのみ使う。
+ */
+export function recordAway(seconds: number): SessionRuntime | null {
+  const rt = read()
+  if (!rt) return null
+  const next: SessionRuntime = {
+    ...rt,
+    awayCount: (rt.awayCount ?? 0) + 1,
+    awaySeconds: (rt.awaySeconds ?? 0) + Math.max(0, Math.round(seconds)),
+  }
+  write(next)
+  return next
 }
 
 /** 経過秒だけを保存する */

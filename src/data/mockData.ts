@@ -1,10 +1,13 @@
 import type { SessionRecord, UserStats } from '../types'
 
 // 初期ユーザー実績（localStorage 未保存時のデフォルト）
+// currentRate はセッションごとに積み上がる累積レート。
+// 学内ランキング（utils/ranking.ts）で中位（30位台）に来る値にしてある。
+// ここを下げすぎると、1回の脱獄で最下位まで落ちてデモが不自然になる。
 export const initialUserStats: UserStats = {
   name: 'たろう',
   grade: '大学2年生',
-  currentRate: 2.0,
+  currentRate: 6.8,
   currentDP: 2450,
   tickets: 2,
   totalFocusMinutes: 7590,

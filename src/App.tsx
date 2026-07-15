@@ -7,6 +7,7 @@ import BreakPage from './pages/BreakPage'
 import SuccessResultPage from './pages/SuccessResultPage'
 import JailbreakResultPage from './pages/JailbreakResultPage'
 import DashboardPage from './pages/DashboardPage'
+import InsightsPage from './pages/InsightsPage'
 import HistoryPage from './pages/HistoryPage'
 import RankingPage from './pages/RankingPage'
 import TicketsPage from './pages/TicketsPage'
@@ -24,6 +25,7 @@ export default function App() {
         <Route path="/session/success" element={<SuccessResultPage />} />
         <Route path="/session/jailbreak" element={<JailbreakResultPage />} />
         <Route path="/dashboard" element={<DashboardPage />} />
+        <Route path="/insights" element={<InsightsPage />} />
         <Route path="/history" element={<HistoryPage />} />
         <Route path="/ranking" element={<RankingPage />} />
         <Route path="/tickets" element={<TicketsPage />} />

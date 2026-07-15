@@ -1,3 +1,4 @@
+import { useMemo, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import {
   ArrowRight,
@@ -9,13 +10,17 @@ import {
   Coins,
   Flame,
   Lock,
+  Play,
+  RotateCcw,
   ShieldCheck,
   TrendingUp,
   Trophy,
   X,
+  Zap,
 } from 'lucide-react'
 import {
   Card,
+  ConfirmDialog,
   IconBadge,
   PrimaryButton,
   SecondaryButton,
@@ -24,10 +29,14 @@ import {
   StatusPill,
 } from '../components'
 import { loadSessionRecords, loadUserStats } from '../utils/storage'
+import { QUICK_DEMO_GOAL, resetAllDemoData, startQuickDemo } from '../utils/demo'
+import { TOTAL_STUDENTS, estimateRank } from '../utils/ranking'
 import {
   MODE_LABELS,
+  formatMinutes,
   formatRate,
   formatShortDateTime,
+  roundRate,
   successRate,
   withSign,
 } from '../utils/sessionCalc'
@@ -36,7 +45,35 @@ import type { SessionRecord } from '../types'
 export default function HomePage() {
   const navigate = useNavigate()
   const user = loadUserStats()
-  const records = loadSessionRecords().slice(0, 4)
+  const allRecords = loadSessionRecords()
+  const records = allRecords.slice(0, 4)
+  const [confirmReset, setConfirmReset] = useState(false)
+  const myRank = estimateRank(user.currentRate)
+
+  // 今日の実績（履歴から実集計。以前は固定値だった）
+  const today = useMemo(() => {
+    const key = new Date().toDateString()
+    const todays = allRecords.filter((r) => new Date(r.date).toDateString() === key)
+    return {
+      minutes: todays.reduce((sum, r) => sum + r.actualMinutes, 0),
+      rateChange: todays.reduce((sum, r) => sum + r.rateChange, 0),
+      dpChange: todays.reduce((sum, r) => sum + r.dpChange, 0),
+    }
+  }, [allRecords])
+  const todayMinutes = today.minutes
+
+  const handleQuickStart = () => {
+    startQuickDemo()
+    navigate('/session/focus')
+  }
+
+  const handleReset = () => {
+    resetAllDemoData()
+    setConfirmReset(false)
+    // 各画面・サイドバーは描画時に localStorage を読むため、再読込で初期値に戻す。
+    // reload は現在の URL（ハッシュ込み）をそのまま読み直すので、GitHub Pages でも壊れない。
+    window.location.reload()
+  }
 
   return (
     <div className="mx-auto max-w-6xl space-y-6">
@@ -72,6 +109,35 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* デモ用クイック操作（面接でその場で見せる／やり直す） */}
+      <Card className="flex flex-col gap-3 border-brand-100 bg-brand-50/40 md:flex-row md:items-center md:justify-between">
+        <div className="flex items-start gap-3">
+          <IconBadge icon={Zap} tone="amber" size="sm" />
+          <div className="min-w-0">
+            <p className="text-sm font-bold text-navy">デモ用ショートカット</p>
+            <p className="mt-0.5 text-xs text-slate-500">
+              設定を飛ばして「{QUICK_DEMO_GOAL}」の60分セッション（提携店舗 / 協力モード）を即開始します。
+            </p>
+          </div>
+        </div>
+        <div className="grid grid-cols-1 gap-2.5 sm:grid-cols-2 md:w-auto md:shrink-0">
+          <PrimaryButton
+            icon={Play}
+            className="min-h-[48px] whitespace-nowrap"
+            onClick={handleQuickStart}
+          >
+            ワンクリックでデモ開始
+          </PrimaryButton>
+          <SecondaryButton
+            icon={RotateCcw}
+            className="min-h-[48px] whitespace-nowrap"
+            onClick={() => setConfirmReset(true)}
+          >
+            デモデータをリセット
+          </SecondaryButton>
+        </div>
+      </Card>
+
       {/* 実績サマリー */}
       <div className="grid grid-cols-2 gap-3 md:gap-4 lg:grid-cols-4">
         <StatCard
@@ -79,8 +145,8 @@ export default function HomePage() {
           label="現在レート"
           value={formatRate(user.currentRate)}
           unit="DP/30分"
-          caption="前日比 +0.3"
-          trend="up"
+          caption={`今日 ${withSign(roundRate(today.rateChange))}`}
+          trend={today.rateChange >= 0 ? 'up' : 'down'}
           tone="blue"
         />
         <StatCard
@@ -88,15 +154,15 @@ export default function HomePage() {
           label="現在DP"
           value={user.currentDP.toLocaleString()}
           unit="DP"
-          caption="前日比 +120"
+          caption={`今日 ${withSign(today.dpChange)}`}
           trend="up"
           tone="green"
         />
         <StatCard
           icon={Clock}
           label="今日の集中時間"
-          value="2時間45分"
-          caption="目標 3時間の92%"
+          value={todayMinutes === 0 ? '0分' : formatMinutes(todayMinutes)}
+          caption={`目標 3時間の${Math.min(100, Math.round((todayMinutes / 180) * 100))}%`}
           tone="navy"
         />
         <StatCard
@@ -169,16 +235,31 @@ export default function HomePage() {
           <div className="flex flex-1 flex-col items-center justify-center py-2">
             <Trophy className="h-8 w-8 text-amber-400" />
             <div className="mt-1 flex items-baseline gap-1">
-              <span className="text-5xl font-bold text-navy">12</span>
+              <span className="text-5xl font-bold text-navy">{myRank}</span>
               <span className="text-xl font-bold text-navy">位</span>
             </div>
-            <p className="mt-1 text-sm text-slate-500">/ 342人中</p>
+            <p className="mt-1 text-sm text-slate-500">/ {TOTAL_STUDENTS}人中</p>
           </div>
           <SecondaryButton fullWidth icon={BarChart3} onClick={() => navigate('/ranking')}>
             ランキング詳細を見る
           </SecondaryButton>
         </Card>
       </div>
+
+      <ConfirmDialog
+        open={confirmReset}
+        title="デモデータをリセットしますか？"
+        icon={RotateCcw}
+        tone="red"
+        danger
+        message={[
+          'レート・DP・履歴・チケット・進行中セッションがすべて初期状態に戻ります。',
+          '面接の直前に実行すると、きれいな状態からデモを始められます。',
+        ]}
+        confirmLabel="リセットする"
+        onConfirm={handleReset}
+        onCancel={() => setConfirmReset(false)}
+      />
     </div>
   )
 }

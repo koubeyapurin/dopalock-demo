@@ -18,6 +18,7 @@ import {
   CheckCircle2,
   Clock,
   Coins,
+  FlaskConical,
   Lock,
   Swords,
   Target,
@@ -28,7 +29,15 @@ import {
   XCircle,
   type LucideIcon,
 } from 'lucide-react'
-import { Card, IconBadge, PageHeader, SectionTitle, SessionCard, StatusPill } from '../components'
+import {
+  Card,
+  IconBadge,
+  PageHeader,
+  SecondaryButton,
+  SectionTitle,
+  SessionCard,
+  StatusPill,
+} from '../components'
 import {
   MODE_LABELS,
   USAGE_LABELS,
@@ -39,6 +48,12 @@ import {
   withSign,
 } from '../utils/sessionCalc'
 import { loadSessionRecords, loadUserStats } from '../utils/storage'
+import {
+  TOTAL_STUDENTS,
+  getMyRanker,
+  getTopRankers,
+  type Ranker,
+} from '../utils/ranking'
 import { useIsMobile } from '../hooks/useIsMobile'
 import type { SessionRecord } from '../types'
 
@@ -52,6 +67,11 @@ export default function DashboardPage() {
 
   const rate = successRate(user)
   const jbRate = 100 - rate
+
+  // ランキング画面と同じ計算元。上位4人を出し、自分が圏外なら自分の行を足す
+  const me = getMyRanker(user)
+  const top = getTopRankers(4, me)
+  const rankingRows = top.some((r) => r.self) ? top : [...top, me]
 
   // 直近7日間の集中時間（分）
   const weekly = useMemo(() => {
@@ -94,6 +114,26 @@ export default function DashboardPage() {
         <DashStat icon={CheckCircle2} tone="green" label="成功回数" value={`${user.successCount}`} caption={`成功率 ${rate}%`} />
         <DashStat icon={XCircle} tone="red" label="脱獄回数" value={`${user.jailbreakCount}`} caption={`脱獄率 ${jbRate}%`} />
       </div>
+
+      {/* 検証データへの導線（スマホは下部ナビに入らないので、ここから入る） */}
+      <Card className="mt-4 flex flex-col gap-3 border-brand-100 bg-brand-50/40 md:flex-row md:items-center md:justify-between">
+        <div className="flex items-start gap-3">
+          <IconBadge icon={FlaskConical} tone="blue" size="sm" />
+          <div className="min-w-0">
+            <p className="text-sm font-bold text-navy">検証データを見る</p>
+            <p className="mt-0.5 text-xs text-slate-500">
+              目標達成率・集中度・離脱検知・利用形態別の成功率など、仮説検証に使う指標をまとめています。
+            </p>
+          </div>
+        </div>
+        <SecondaryButton
+          icon={FlaskConical}
+          className="min-h-[48px] shrink-0 whitespace-nowrap"
+          onClick={() => navigate('/insights')}
+        >
+          検証データへ
+        </SecondaryButton>
+      </Card>
 
       {/* グラフ ＋ 成功率 ＋ ランキング */}
       <div className="mt-4 grid grid-cols-1 gap-4 lg:grid-cols-5">
@@ -153,10 +193,10 @@ export default function DashboardPage() {
           </p>
         </Card>
 
-        {/* 仮ランキング */}
+        {/* 学内ランキング（ランキング画面と同じ計算元を使う） */}
         <Card className="lg:col-span-2">
           <SectionTitle
-            title="仮ランキング（今週）"
+            title="学内ランキング（今週）"
             icon={Trophy}
             action={
               <button
@@ -168,19 +208,13 @@ export default function DashboardPage() {
             }
           />
           <ul className="mt-4 space-y-1.5">
-            <RankRow rank={1} name="ゆうと" rate="2.8" dp="3,120" />
-            <RankRow rank={2} name="きょうへい" rate="2.5" dp="2,890" />
-            <RankRow rank={3} name="あやか" rate="2.3" dp="2,760" />
-            <RankRow rank={4} name="しゅん" rate="2.1" dp="2,510" />
-            <RankRow
-              rank={5}
-              name="あなた"
-              rate={formatRate(user.currentRate)}
-              dp={user.currentDP.toLocaleString()}
-              self
-            />
+            {rankingRows.map((r) => (
+              <RankRow key={r.name} ranker={r} />
+            ))}
           </ul>
-          <p className="mt-2 text-center text-[11px] text-slate-400">※ ランキングは仮のデータです</p>
+          <p className="mt-2 text-center text-[11px] text-slate-400">
+            あなたは {TOTAL_STUDENTS}人中 {me.rank}位（自分以外は仮のデータ）
+          </p>
         </Card>
       </div>
 
@@ -273,19 +307,8 @@ function DashStat({
 }
 
 /** ランキング行 */
-function RankRow({
-  rank,
-  name,
-  rate,
-  dp,
-  self,
-}: {
-  rank: number
-  name: string
-  rate: string
-  dp: string
-  self?: boolean
-}) {
+function RankRow({ ranker }: { ranker: Ranker }) {
+  const { rank, name, rate, dp, self } = ranker
   const medal =
     rank === 1
       ? 'bg-amber-400 text-white'
@@ -300,7 +323,9 @@ function RankRow({
         self ? 'bg-brand-50 ring-1 ring-brand-200' : ''
       }`}
     >
-      <span className={`grid h-6 w-6 shrink-0 place-items-center rounded-full text-xs font-bold ${medal}`}>
+      <span
+        className={`grid h-6 w-6 shrink-0 place-items-center rounded-full text-[11px] font-bold ${medal}`}
+      >
         {rank}
       </span>
       <span className="grid h-8 w-8 shrink-0 place-items-center rounded-full bg-brand-50">
@@ -308,9 +333,9 @@ function RankRow({
       </span>
       <div className="min-w-0 flex-1">
         <p className={`truncate text-sm font-bold ${self ? 'text-brand-700' : 'text-navy'}`}>{name}</p>
-        <p className="text-[11px] text-slate-400">{rate} DP / 30分</p>
+        <p className="text-[11px] text-slate-400">{formatRate(rate)} DP / 30分</p>
       </div>
-      <span className="shrink-0 text-sm font-bold text-navy">DP {dp}</span>
+      <span className="shrink-0 text-sm font-bold text-navy">DP {dp.toLocaleString()}</span>
     </li>
   )
 }
